@@ -1,0 +1,35 @@
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Arquivos de editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Dependências
+node_modules/
+package-lock.json
+yarn.lock
+
+# Logs
+*.log
+npm-debug.log*
+
+# Arquivos temporários
+temp/
+tmp/
+*.tmp
+
+# Arquivos sensíveis (nunca commit!)
+.env
+.env.local
+config.local.js
+
+# Diretório de build
+dist/
+build/
