@@ -4,7 +4,862 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Gestão - Casa Passagem</title>
-    <link rel="stylesheet" href="css/style.css">
+    <!-- CSS Local -->
+    <style>
+        /* ============================================
+           VARIÁVEIS E RESET
+           ============================================ */
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --success-color: #27ae60;
+            --danger-color: #e74c3c;
+            --warning-color: #f39c12;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --border-color: #bdc3c7;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 5px 20px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--dark-color);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* ============================================
+           HEADER
+           ============================================ */
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #34495e 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow-lg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-section i {
+            font-size: 2.5rem;
+        }
+
+        .logo-section h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-section p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 0.25rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-logout {
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .btn-logout:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        /* ============================================
+           CONTAINER E LAYOUT
+           ============================================ */
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .main-content {
+            padding: 2rem 0;
+        }
+
+        /* ============================================
+           NAVEGAÇÃO COM ABAS
+           ============================================ */
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            background: white;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            box-shadow: var(--shadow);
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            background: var(--light-color);
+            border: 2px solid transparent;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: var(--transition);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn:hover {
+            background: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+
+        /* ============================================
+           CARDS E CONTEÚDO
+           ============================================ */
+
+        .card {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .card h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================
+           FORMULÁRIOS
+           ============================================ */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.75rem;
+            border: 2px solid var(--border-color);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group small {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-top: 0.25rem;
+        }
+
+        /* ============================================
+           BOTÕES
+           ============================================ */
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+
+        .btn-secondary {
+            background: var(--light-color);
+            color: var(--primary-color);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border-color);
+        }
+
+        .btn-success {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #229954;
+        }
+
+        .btn-danger {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+
+        .btn.full-width {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ============================================
+           ENTRADA/SAÍDA
+           ============================================ */
+
+        .entrada-saida-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .entrada-saida-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border-left: 5px solid;
+        }
+
+        .entrada-saida-card.entrada {
+            border-left-color: var(--success-color);
+        }
+
+        .entrada-saida-card.saida {
+            border-left-color: var(--danger-color);
+        }
+
+        .entrada-saida-card h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        /* ============================================
+           LISTAS
+           ============================================ */
+
+        .lista-usuarios,
+        .lista-movimentacoes,
+        .resultado-busca {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .usuario-item,
+        .movimentacao-item,
+        .busca-resultado {
+            background: var(--light-color);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        .usuario-item:hover,
+        .movimentacao-item:hover,
+        .busca-resultado:hover {
+            box-shadow: var(--shadow);
+            transform: translateX(5px);
+        }
+
+        .usuario-item strong,
+        .movimentacao-item strong,
+        .busca-resultado strong {
+            color: var(--primary-color);
+        }
+
+        .usuario-item p,
+        .movimentacao-item p,
+        .busca-resultado p {
+            margin: 0.25rem 0;
+            font-size: 0.95rem;
+        }
+
+        .status-entrada {
+            color: var(--success-color);
+            font-weight: 600;
+        }
+
+        .status-saida {
+            color: var(--danger-color);
+            font-weight: 600;
+        }
+
+        /* ============================================
+           RELATÓRIOS
+           ============================================ */
+
+        .relatorio-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+
+        .relatorio-controls .form-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .relatorio-content {
+            background: var(--light-color);
+            padding: 2rem;
+            border-radius: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .relatorio-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 1rem;
+        }
+
+        .relatorio-header h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .relatorio-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .stat-card .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .stat-card .stat-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-top: 0.5rem;
+        }
+
+        .relatorio-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin-top: 1rem;
+        }
+
+        .relatorio-table thead {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .relatorio-table th,
+        .relatorio-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .relatorio-table tbody tr:hover {
+            background: var(--light-color);
+        }
+
+        .relatorio-table tbody tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        /* ============================================
+           PRESENÇA DIÁRIA
+           ============================================ */
+
+        .presenca-list {
+            background: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .presenca-item {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            align-items: center;
+        }
+
+        .presenca-item:last-child {
+            border-bottom: none;
+        }
+
+        .presenca-info strong {
+            display: block;
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+        }
+
+        .presenca-assinatura {
+            border-bottom: 2px solid var(--dark-color);
+            min-width: 200px;
+            min-height: 30px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+
+        /* ============================================
+           FEEDBACK E ESTADOS
+           ============================================ */
+
+        .feedback {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.success {
+            background: #d4edda;
+            color: #155724;
+            border-left: 4px solid var(--success-color);
+        }
+
+        .feedback.error {
+            background: #f8d7da;
+            color: #721c24;
+            border-left: 4px solid var(--danger-color);
+        }
+
+        .feedback.warning {
+            background: #fff3cd;
+            color: #856404;
+            border-left: 4px solid var(--warning-color);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .empty-state {
+            text-align: center;
+            color: #7f8c8d;
+            padding: 2rem;
+            font-style: italic;
+        }
+
+        /* ============================================
+           MODAL
+           ============================================ */
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: var(--shadow-lg);
+            max-width: 500px;
+            width: 90%;
+            animation: slideUp 0.3s ease;
+        }
+
+        .modal-content h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .modal-content p {
+            color: #7f8c8d;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-print {
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .btn-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #7f8c8d;
+            transition: var(--transition);
+        }
+
+        .btn-close:hover {
+            color: var(--primary-color);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================
+           DIVISOR
+           ============================================ */
+
+        .divider {
+            border: none;
+            border-top: 2px solid var(--border-color);
+            margin: 2rem 0;
+        }
+
+        /* ============================================
+           STATUS
+           ============================================ */
+
+        .status-conectado {
+            color: var(--success-color);
+            font-weight: 600;
+        }
+
+        .status-desconectado {
+            color: var(--danger-color);
+            font-weight: 600;
+        }
+
+        /* ============================================
+           RESPONSIVIDADE
+           ============================================ */
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .logo-section {
+                flex-direction: column;
+            }
+
+            .logo-section h1 {
+                font-size: 1.3rem;
+            }
+
+            .nav-tabs {
+                flex-direction: column;
+            }
+
+            .tab-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .entrada-saida-container {
+                grid-template-columns: 1fr;
+            }
+
+            .relatorio-controls {
+                flex-direction: column;
+            }
+
+            .relatorio-controls .form-group {
+                width: 100%;
+            }
+
+            .relatorio-table {
+                font-size: 0.9rem;
+            }
+
+            .relatorio-table th,
+            .relatorio-table td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .presenca-item {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .presenca-assinatura {
+                min-width: 100%;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 1rem 0;
+            }
+
+            .header-content {
+                padding: 0 0.5rem;
+            }
+
+            .logo-section i {
+                font-size: 2rem;
+            }
+
+            .logo-section h1 {
+                font-size: 1.1rem;
+            }
+
+            .logo-section p {
+                font-size: 0.8rem;
+            }
+
+            .card {
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .card h2 {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+
+            .btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .tab-btn {
+                padding: 0.6rem 0.75rem;
+                font-size: 0.85rem;
+            }
+
+            .relatorio-table {
+                font-size: 0.8rem;
+            }
+
+            .relatorio-table th,
+            .relatorio-table td {
+                padding: 0.5rem 0.25rem;
+            }
+        }
+
+        /* ============================================
+           IMPRESSÃO
+           ============================================ */
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .header,
+            .nav-tabs,
+            .relatorio-controls,
+            .btn,
+            .modal {
+                display: none !important;
+            }
+
+            .card {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+
+            .relatorio-content {
+                background: white;
+                padding: 0;
+            }
+
+            .relatorio-table {
+                page-break-inside: avoid;
+            }
+
+            .presenca-assinatura {
+                border-bottom: 1px solid #000;
+            }
+        }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Biblioteca para geração de PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -282,7 +1137,7 @@
     </div>
 
     <!-- Modal de Login -->
-    <div id="login-modal" class="modal">
+    <div id="login-modal" class="modal show">
         <div class="modal-content">
             <h2>Bem-vindo ao Sistema</h2>
             <p>Insira seu nome para acessar o sistema</p>
@@ -303,9 +1158,1084 @@
         </div>
     </div>
 
-    <script src="js/config.js"></script>
-    <script src="js/googlesheets.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/relatorios.js"></script>
+    <!-- SCRIPTS INLINE - TUDO EM UM ARQUIVO -->
+    <script>
+        // ============================================
+        // CONFIGURAÇÃO DO SISTEMA
+        // ============================================
+
+        const CONFIG = {
+            spreadsheetId: localStorage.getItem('spreadsheetId') || '',
+            apiKey: localStorage.getItem('apiKey') || '',
+            
+            sheets: {
+                usuarios: 'Usuários',
+                movimentacoes: 'Movimentações',
+                relatorios: 'Relatórios'
+            },
+
+            dateFormat: 'dd/mm/yyyy',
+            timeFormat: 'hh:mm',
+
+            messages: {
+                success: 'Operação realizada com sucesso!',
+                error: 'Erro ao processar a solicitação',
+                loading: 'Carregando...',
+                noData: 'Nenhum dado encontrado'
+            }
+        };
+
+        function saveConfig(spreadsheetId, apiKey) {
+            localStorage.setItem('spreadsheetId', spreadsheetId);
+            localStorage.setItem('apiKey', apiKey);
+            CONFIG.spreadsheetId = spreadsheetId;
+            CONFIG.apiKey = apiKey;
+        }
+
+        function validarCPF(cpf) {
+            cpf = cpf.replace(/[^\d]/g, '');
+            if (cpf.length !== 11) return false;
+            if (/^(\d)\1{10}$/.test(cpf)) return false;
+
+            let sum = 0;
+            let remainder;
+            for (let i = 1; i <= 9; i++) {
+                sum += parseInt(cpf.substring(i - 1, i)) * (11 - i);
+            }
+            remainder = (sum * 10) % 11;
+            if (remainder === 10 || remainder === 11) remainder = 0;
+            if (remainder !== parseInt(cpf.substring(9, 10))) return false;
+
+            sum = 0;
+            for (let i = 1; i <= 10; i++) {
+                sum += parseInt(cpf.substring(i - 1, i)) * (12 - i);
+            }
+            remainder = (sum * 10) % 11;
+            if (remainder === 10 || remainder === 11) remainder = 0;
+            if (remainder !== parseInt(cpf.substring(10, 11))) return false;
+
+            return true;
+        }
+
+        function formatarCPF(cpf) {
+            cpf = cpf.replace(/[^\d]/g, '');
+            if (cpf.length !== 11) return cpf;
+            return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+        }
+
+        function formatarData(data) {
+            if (!data) return '';
+            const d = new Date(data);
+            const dia = String(d.getDate()).padStart(2, '0');
+            const mes = String(d.getMonth() + 1).padStart(2, '0');
+            const ano = d.getFullYear();
+            return `${dia}/${mes}/${ano}`;
+        }
+
+        function formatarHora(data) {
+            if (!data) return '';
+            const d = new Date(data);
+            const horas = String(d.getHours()).padStart(2, '0');
+            const minutos = String(d.getMinutes()).padStart(2, '0');
+            return `${horas}:${minutos}`;
+        }
+
+        function formatarDataHora(data) {
+            return `${formatarData(data)} ${formatarHora(data)}`;
+        }
+
+        function getDataAtual() {
+            const hoje = new Date();
+            return formatarData(hoje);
+        }
+
+        function getHoraAtual() {
+            const agora = new Date();
+            return formatarHora(agora);
+        }
+
+        function mostrarFeedback(elementId, mensagem, tipo = 'success') {
+            const elemento = document.getElementById(elementId);
+            if (!elemento) return;
+
+            elemento.textContent = mensagem;
+            elemento.className = `feedback show ${tipo}`;
+
+            setTimeout(() => {
+                elemento.classList.remove('show');
+            }, 5000);
+        }
+
+        function limparFormulario(formId) {
+            const form = document.getElementById(formId);
+            if (form) {
+                form.reset();
+            }
+        }
+
+        function dataEntrePeriodo(data, dataInicio, dataFim) {
+            const d = new Date(data);
+            const di = new Date(dataInicio);
+            const df = new Date(dataFim);
+            return d >= di && d <= df;
+        }
+
+        // ============================================
+        // INTEGRAÇÃO COM GOOGLE SHEETS API
+        // ============================================
+
+        class GoogleSheetsAPI {
+            constructor(spreadsheetId, apiKey) {
+                this.spreadsheetId = spreadsheetId;
+                this.apiKey = apiKey;
+                this.baseUrl = 'https://sheets.googleapis.com/v4/spreadsheets';
+            }
+
+            async obterDados(sheetName) {
+                if (!this.spreadsheetId || !this.apiKey) {
+                    throw new Error('Spreadsheet ID ou API Key não configurados');
+                }
+
+                try {
+                    const url = `${this.baseUrl}/${this.spreadsheetId}/values/${sheetName}?key=${this.apiKey}`;
+                    const response = await fetch(url);
+                    
+                    if (!response.ok) {
+                        throw new Error(`Erro ao obter dados: ${response.statusText}`);
+                    }
+
+                    const data = await response.json();
+                    return data.values || [];
+                } catch (error) {
+                    console.error('Erro ao obter dados do Google Sheets:', error);
+                    throw error;
+                }
+            }
+
+            async adicionarDados(sheetName, valores) {
+                if (!this.spreadsheetId || !this.apiKey) {
+                    throw new Error('Spreadsheet ID ou API Key não configurados');
+                }
+
+                try {
+                    const url = `${this.baseUrl}/${this.spreadsheetId}/values/${sheetName}:append?valueInputOption=USER_ENTERED&key=${this.apiKey}`;
+                    
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            values: [valores]
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Erro ao adicionar dados: ${response.statusText}`);
+                    }
+
+                    return await response.json();
+                } catch (error) {
+                    console.error('Erro ao adicionar dados ao Google Sheets:', error);
+                    throw error;
+                }
+            }
+
+            async testarConexao() {
+                try {
+                    await this.obterDados(CONFIG.sheets.usuarios);
+                    return true;
+                } catch (error) {
+                    console.error('Erro ao testar conexão:', error);
+                    return false;
+                }
+            }
+        }
+
+        let sheetsAPI = null;
+
+        function inicializarAPI() {
+            if (CONFIG.spreadsheetId && CONFIG.apiKey) {
+                sheetsAPI = new GoogleSheetsAPI(CONFIG.spreadsheetId, CONFIG.apiKey);
+                return true;
+            }
+            return false;
+        }
+
+        async function obterUsuarios() {
+            if (!sheetsAPI) {
+                throw new Error('API não inicializada');
+            }
+
+            try {
+                const dados = await sheetsAPI.obterDados(CONFIG.sheets.usuarios);
+                
+                if (dados.length > 1) {
+                    return dados.slice(1).map(row => ({
+                        id: row[0] || '',
+                        nome: row[1] || '',
+                        cpf: row[2] || '',
+                        responsavel: row[3] || '',
+                        observacoes: row[4] || '',
+                        dataCadastro: row[5] || '',
+                        status: row[6] || 'Ativo'
+                    }));
+                }
+                return [];
+            } catch (error) {
+                console.error('Erro ao obter usuários:', error);
+                throw error;
+            }
+        }
+
+        async function cadastrarUsuario(nome, cpf, responsavel, observacoes) {
+            if (!sheetsAPI) {
+                throw new Error('API não inicializada');
+            }
+
+            try {
+                const id = Date.now().toString();
+                const dataCadastro = new Date().toISOString();
+                
+                const valores = [
+                    id,
+                    nome,
+                    cpf,
+                    responsavel,
+                    observacoes,
+                    dataCadastro,
+                    'Ativo'
+                ];
+
+                await sheetsAPI.adicionarDados(CONFIG.sheets.usuarios, valores);
+                return { id, nome, cpf, responsavel, observacoes, dataCadastro };
+            } catch (error) {
+                console.error('Erro ao cadastrar usuário:', error);
+                throw error;
+            }
+        }
+
+        async function obterMovimentacoes() {
+            if (!sheetsAPI) {
+                throw new Error('API não inicializada');
+            }
+
+            try {
+                const dados = await sheetsAPI.obterDados(CONFIG.sheets.movimentacoes);
+                
+                if (dados.length > 1) {
+                    return dados.slice(1).map(row => ({
+                        id: row[0] || '',
+                        usuarioId: row[1] || '',
+                        usuarioNome: row[2] || '',
+                        usuarioCPF: row[3] || '',
+                        tipo: row[4] || '',
+                        dataHora: row[5] || '',
+                        cuidador: row[6] || ''
+                    }));
+                }
+                return [];
+            } catch (error) {
+                console.error('Erro ao obter movimentações:', error);
+                throw error;
+            }
+        }
+
+        async function registrarEntrada(usuarioId, usuarioNome, usuarioCPF, cuidador) {
+            if (!sheetsAPI) {
+                throw new Error('API não inicializada');
+            }
+
+            try {
+                const id = Date.now().toString();
+                const dataHora = new Date().toISOString();
+                
+                const valores = [
+                    id,
+                    usuarioId,
+                    usuarioNome,
+                    usuarioCPF,
+                    'entrada',
+                    dataHora,
+                    cuidador
+                ];
+
+                await sheetsAPI.adicionarDados(CONFIG.sheets.movimentacoes, valores);
+                return { id, usuarioId, usuarioNome, usuarioCPF, tipo: 'entrada', dataHora, cuidador };
+            } catch (error) {
+                console.error('Erro ao registrar entrada:', error);
+                throw error;
+            }
+        }
+
+        async function registrarSaida(usuarioId, usuarioNome, usuarioCPF, cuidador) {
+            if (!sheetsAPI) {
+                throw new Error('API não inicializada');
+            }
+
+            try {
+                const id = Date.now().toString();
+                const dataHora = new Date().toISOString();
+                
+                const valores = [
+                    id,
+                    usuarioId,
+                    usuarioNome,
+                    usuarioCPF,
+                    'saida',
+                    dataHora,
+                    cuidador
+                ];
+
+                await sheetsAPI.adicionarDados(CONFIG.sheets.movimentacoes, valores);
+                return { id, usuarioId, usuarioNome, usuarioCPF, tipo: 'saida', dataHora, cuidador };
+            } catch (error) {
+                console.error('Erro ao registrar saída:', error);
+                throw error;
+            }
+        }
+
+        async function buscarUsuario(termo) {
+            if (!sheetsAPI) {
+                throw new Error('API não inicializada');
+            }
+
+            try {
+                const usuarios = await obterUsuarios();
+                const movimentacoes = await obterMovimentacoes();
+
+                const termoLower = termo.toLowerCase();
+                const usuariosEncontrados = usuarios.filter(u => 
+                    u.nome.toLowerCase().includes(termoLower) || 
+                    u.cpf.includes(termo)
+                );
+
+                return usuariosEncontrados.map(usuario => {
+                    const movs = movimentacoes.filter(m => m.usuarioId === usuario.id);
+                    return {
+                        ...usuario,
+                        movimentacoes: movs
+                    };
+                });
+            } catch (error) {
+                console.error('Erro ao buscar usuário:', error);
+                throw error;
+            }
+        }
+
+        async function obterUsuariosPresentes(data) {
+            if (!sheetsAPI) {
+                throw new Error('API não inicializada');
+            }
+
+            try {
+                const usuarios = await obterUsuarios();
+                const movimentacoes = await obterMovimentacoes();
+
+                const dataStr = formatarData(data);
+                const usuariosPresentes = [];
+
+                for (const usuario of usuarios) {
+                    const movsUsuario = movimentacoes.filter(m => m.usuarioId === usuario.id);
+                    
+                    const movsDodia = movsUsuario.filter(m => {
+                        const dataMov = formatarData(new Date(m.dataHora));
+                        return dataMov === dataStr;
+                    });
+
+                    if (movsDodia.length > 0) {
+                        const ultimaMov = movsDodia[movsDodia.length - 1];
+                        if (ultimaMov.tipo === 'entrada') {
+                            usuariosPresentes.push({
+                                ...usuario,
+                                ultimaMovimentacao: ultimaMov
+                            });
+                        }
+                    }
+                }
+
+                return usuariosPresentes;
+            } catch (error) {
+                console.error('Erro ao obter usuários presentes:', error);
+                throw error;
+            }
+        }
+
+        async function obterMovimentacoesPorPeriodo(dataInicio, dataFim) {
+            if (!sheetsAPI) {
+                throw new Error('API não inicializada');
+            }
+
+            try {
+                const movimentacoes = await obterMovimentacoes();
+                
+                return movimentacoes.filter(m => {
+                    const dataMov = new Date(m.dataHora);
+                    return dataEntrePeriodo(dataMov, dataInicio, dataFim);
+                });
+            } catch (error) {
+                console.error('Erro ao obter movimentações por período:', error);
+                throw error;
+            }
+        }
+
+        // ============================================
+        // APLICAÇÃO PRINCIPAL
+        // ============================================
+
+        let usuarioLogado = null;
+        let usuariosCadastrados = [];
+        let movimentacoes = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const usuarioSalvo = localStorage.getItem('usuarioLogado');
+            if (usuarioSalvo) {
+                usuarioLogado = usuarioSalvo;
+                document.getElementById('login-modal').classList.remove('show');
+                document.getElementById('current-user').textContent = usuarioLogado;
+                inicializarSistema();
+            }
+
+            setupEventListeners();
+        });
+
+        function mostrarLoginModal() {
+            const modal = document.getElementById('login-modal');
+            modal.classList.add('show');
+        }
+
+        function fecharLoginModal() {
+            const modal = document.getElementById('login-modal');
+            modal.classList.remove('show');
+        }
+
+        document.getElementById('form-login')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const nome = document.getElementById('login-name').value.trim();
+            
+            if (nome) {
+                usuarioLogado = nome;
+                localStorage.setItem('usuarioLogado', nome);
+                document.getElementById('current-user').textContent = nome;
+                fecharLoginModal();
+                inicializarSistema();
+            }
+        });
+
+        document.getElementById('logout-btn')?.addEventListener('click', () => {
+            localStorage.removeItem('usuarioLogado');
+            usuarioLogado = null;
+            mostrarLoginModal();
+        });
+
+        async function inicializarSistema() {
+            if (inicializarAPI()) {
+                await carregarDados();
+                atualizarStatusConexao(true);
+            } else {
+                atualizarStatusConexao(false);
+            }
+
+            carregarDadosLocais();
+        }
+
+        async function carregarDados() {
+            try {
+                usuariosCadastrados = await obterUsuarios();
+                movimentacoes = await obterMovimentacoes();
+                atualizarSelectsUsuarios();
+            } catch (error) {
+                console.error('Erro ao carregar dados:', error);
+            }
+        }
+
+        function carregarDadosLocais() {
+            const usuariosLocal = localStorage.getItem('usuariosCadastrados');
+            const movimentacoesLocal = localStorage.getItem('movimentacoes');
+
+            if (usuariosLocal) {
+                usuariosCadastrados = JSON.parse(usuariosLocal);
+            }
+            if (movimentacoesLocal) {
+                movimentacoes = JSON.parse(movimentacoesLocal);
+            }
+
+            atualizarSelectsUsuarios();
+        }
+
+        function salvarDadosLocais() {
+            localStorage.setItem('usuariosCadastrados', JSON.stringify(usuariosCadastrados));
+            localStorage.setItem('movimentacoes', JSON.stringify(movimentacoes));
+        }
+
+        function setupEventListeners() {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const tabName = e.currentTarget.dataset.tab;
+                    abrirAba(tabName);
+                });
+            });
+
+            document.getElementById('form-cadastro')?.addEventListener('submit', handleCadastro);
+            document.getElementById('form-entrada')?.addEventListener('submit', handleEntrada);
+            document.getElementById('form-saida')?.addEventListener('submit', handleSaida);
+
+            document.getElementById('btn-buscar')?.addEventListener('click', handleBusca);
+            document.getElementById('busca-input')?.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') handleBusca();
+            });
+
+            document.getElementById('btn-gerar-relatorio')?.addEventListener('click', gerarRelatorio);
+            document.getElementById('btn-imprimir-relatorio')?.addEventListener('click', imprimirRelatorio);
+            document.getElementById('btn-pdf-relatorio')?.addEventListener('click', gerarPDFRelatorio);
+
+            document.getElementById('btn-gerar-relatorio-diario')?.addEventListener('click', gerarRelatorioDiario);
+            document.getElementById('btn-imprimir-diario')?.addEventListener('click', imprimirRelatorioDiario);
+            document.getElementById('btn-pdf-diario')?.addEventListener('click', gerarPDFRelatorioDiario);
+
+            document.getElementById('btn-salvar-config')?.addEventListener('click', salvarConfiguracao);
+
+            const hoje = new Date();
+            document.getElementById('data-relatorio-diario').valueAsDate = hoje;
+            document.getElementById('data-inicio-relatorio').valueAsDate = new Date(hoje.getFullYear(), hoje.getMonth(), 1);
+            document.getElementById('data-fim-relatorio').valueAsDate = hoje;
+        }
+
+        function abrirAba(tabName) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+
+            if (tabName === 'cadastro') {
+                atualizarListaCadastros();
+            } else if (tabName === 'entrada-saida') {
+                atualizarListaMovimentacoes();
+            }
+        }
+
+        async function handleCadastro(e) {
+            e.preventDefault();
+
+            const nome = document.getElementById('nome').value.trim();
+            const cpf = document.getElementById('cpf').value.trim();
+            const responsavel = document.getElementById('responsavel').value.trim();
+            const observacoes = document.getElementById('observacoes').value.trim();
+
+            if (!validarCPF(cpf)) {
+                mostrarFeedback('cadastro-feedback', 'CPF inválido', 'error');
+                return;
+            }
+
+            if (usuariosCadastrados.some(u => u.cpf === cpf)) {
+                mostrarFeedback('cadastro-feedback', 'Este CPF já está cadastrado', 'error');
+                return;
+            }
+
+            try {
+                const usuario = await cadastrarUsuario(nome, cpf, responsavel, observacoes);
+                usuariosCadastrados.push(usuario);
+                salvarDadosLocais();
+                atualizarSelectsUsuarios();
+                atualizarListaCadastros();
+                
+                mostrarFeedback('cadastro-feedback', 'Usuário cadastrado com sucesso!', 'success');
+                limparFormulario('form-cadastro');
+            } catch (error) {
+                console.error('Erro ao cadastrar:', error);
+                mostrarFeedback('cadastro-feedback', 'Erro ao cadastrar usuário. Verifique a conexão com Google Sheets.', 'error');
+            }
+        }
+
+        function atualizarListaCadastros() {
+            const lista = document.getElementById('lista-cadastros');
+            
+            if (usuariosCadastrados.length === 0) {
+                lista.innerHTML = '<p class="empty-state">Nenhum usuário cadastrado ainda</p>';
+                return;
+            }
+
+            const ultimos = usuariosCadastrados.slice(-10).reverse();
+            
+            lista.innerHTML = ultimos.map(usuario => `
+                <div class="usuario-item">
+                    <strong>${usuario.nome}</strong>
+                    <p><strong>CPF:</strong> ${formatarCPF(usuario.cpf)}</p>
+                    <p><strong>Responsável:</strong> ${usuario.responsavel}</p>
+                    ${usuario.observacoes ? `<p><strong>Observações:</strong> ${usuario.observacoes}</p>` : ''}
+                    <p><strong>Data de Cadastro:</strong> ${formatarData(new Date(usuario.dataCadastro))}</p>
+                </div>
+            `).join('');
+        }
+
+        function atualizarSelectsUsuarios() {
+            const selectEntrada = document.getElementById('entrada-usuario');
+            const selectSaida = document.getElementById('saida-usuario');
+
+            const opcoes = usuariosCadastrados.map(u => 
+                `<option value="${u.id}">${u.nome} - ${formatarCPF(u.cpf)}</option>`
+            ).join('');
+
+            if (selectEntrada) {
+                selectEntrada.innerHTML = '<option value="">-- Selecione um usuário --</option>' + opcoes;
+            }
+            if (selectSaida) {
+                selectSaida.innerHTML = '<option value="">-- Selecione um usuário --</option>' + opcoes;
+            }
+        }
+
+        async function handleEntrada(e) {
+            e.preventDefault();
+
+            const usuarioId = document.getElementById('entrada-usuario').value;
+            const cuidador = document.getElementById('entrada-cuidador').value.trim();
+
+            if (!usuarioId || !cuidador) {
+                mostrarFeedback('entrada-feedback', 'Preencha todos os campos', 'error');
+                return;
+            }
+
+            const usuario = usuariosCadastrados.find(u => u.id === usuarioId);
+            if (!usuario) {
+                mostrarFeedback('entrada-feedback', 'Usuário não encontrado', 'error');
+                return;
+            }
+
+            try {
+                const movimentacao = await registrarEntrada(usuario.id, usuario.nome, usuario.cpf, cuidador);
+                movimentacoes.push(movimentacao);
+                salvarDadosLocais();
+                atualizarListaMovimentacoes();
+                
+                mostrarFeedback('entrada-feedback', `Entrada registrada para ${usuario.nome}`, 'success');
+                limparFormulario('form-entrada');
+            } catch (error) {
+                console.error('Erro ao registrar entrada:', error);
+                mostrarFeedback('entrada-feedback', 'Erro ao registrar entrada', 'error');
+            }
+        }
+
+        async function handleSaida(e) {
+            e.preventDefault();
+
+            const usuarioId = document.getElementById('saida-usuario').value;
+            const cuidador = document.getElementById('saida-cuidador').value.trim();
+
+            if (!usuarioId || !cuidador) {
+                mostrarFeedback('saida-feedback', 'Preencha todos os campos', 'error');
+                return;
+            }
+
+            const usuario = usuariosCadastrados.find(u => u.id === usuarioId);
+            if (!usuario) {
+                mostrarFeedback('saida-feedback', 'Usuário não encontrado', 'error');
+                return;
+            }
+
+            try {
+                const movimentacao = await registrarSaida(usuario.id, usuario.nome, usuario.cpf, cuidador);
+                movimentacoes.push(movimentacao);
+                salvarDadosLocais();
+                atualizarListaMovimentacoes();
+                
+                mostrarFeedback('saida-feedback', `Saída registrada para ${usuario.nome}`, 'success');
+                limparFormulario('form-saida');
+            } catch (error) {
+                console.error('Erro ao registrar saída:', error);
+                mostrarFeedback('saida-feedback', 'Erro ao registrar saída', 'error');
+            }
+        }
+
+        function atualizarListaMovimentacoes() {
+            const lista = document.getElementById('lista-movimentacoes');
+            
+            if (movimentacoes.length === 0) {
+                lista.innerHTML = '<p class="empty-state">Nenhum registro de entrada/saída ainda</p>';
+                return;
+            }
+
+            const ultimas = movimentacoes.slice(-10).reverse();
+            
+            lista.innerHTML = ultimas.map(mov => {
+                const classe = mov.tipo === 'entrada' ? 'status-entrada' : 'status-saida';
+                const icone = mov.tipo === 'entrada' ? '↓' : '↑';
+                const tipo = mov.tipo === 'entrada' ? 'ENTRADA' : 'SAÍDA';
+                
+                return `
+                    <div class="movimentacao-item">
+                        <strong>${mov.usuarioNome}</strong>
+                        <p><strong>CPF:</strong> ${formatarCPF(mov.usuarioCPF)}</p>
+                        <p><strong>Tipo:</strong> <span class="${classe}">${icone} ${tipo}</span></p>
+                        <p><strong>Data/Hora:</strong> ${formatarDataHora(new Date(mov.dataHora))}</p>
+                        <p><strong>Cuidador:</strong> ${mov.cuidador}</p>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        async function handleBusca() {
+            const termo = document.getElementById('busca-input').value.trim();
+            const resultado = document.getElementById('resultado-busca');
+
+            if (!termo) {
+                resultado.innerHTML = '<p class="empty-state">Digite um nome ou CPF para buscar</p>';
+                return;
+            }
+
+            try {
+                const usuariosEncontrados = await buscarUsuario(termo);
+
+                if (usuariosEncontrados.length === 0) {
+                    resultado.innerHTML = '<p class="empty-state">Nenhum usuário encontrado</p>';
+                    return;
+                }
+
+                resultado.innerHTML = usuariosEncontrados.map(usuario => {
+                    const movsUsuario = movimentacoes.filter(m => m.usuarioId === usuario.id);
+                    const ultimaMov = movsUsuario[movsUsuario.length - 1];
+
+                    return `
+                        <div class="busca-resultado">
+                            <strong>${usuario.nome}</strong>
+                            <p><strong>CPF:</strong> ${formatarCPF(usuario.cpf)}</p>
+                            <p><strong>Responsável Cadastro:</strong> ${usuario.responsavel}</p>
+                            ${usuario.observacoes ? `<p><strong>Observações:</strong> ${usuario.observacoes}</p>` : ''}
+                            <p><strong>Data de Cadastro:</strong> ${formatarData(new Date(usuario.dataCadastro))}</p>
+                            <hr class="divider">
+                            <p><strong>Histórico de Movimentações (${movsUsuario.length}):</strong></p>
+                            ${movsUsuario.length > 0 ? `
+                                <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                                    ${movsUsuario.reverse().map(mov => `
+                                        <li>${mov.tipo === 'entrada' ? '↓ ENTRADA' : '↑ SAÍDA'} - ${formatarDataHora(new Date(mov.dataHora))} (${mov.cuidador})</li>
+                                    `).join('')}
+                                </ul>
+                            ` : '<p style="color: #7f8c8d;">Sem movimentações registradas</p>'}
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.error('Erro ao buscar usuário:', error);
+                resultado.innerHTML = '<p class="empty-state">Erro ao buscar usuário</p>';
+            }
+        }
+
+        async function salvarConfiguracao() {
+            const spreadsheetId = document.getElementById('spreadsheet-id').value.trim();
+            const apiKey = document.getElementById('api-key').value.trim();
+
+            if (!spreadsheetId || !apiKey) {
+                mostrarFeedback('config-feedback', 'Preencha todos os campos', 'error');
+                return;
+            }
+
+            try {
+                saveConfig(spreadsheetId, apiKey);
+                inicializarAPI();
+
+                const conectado = await sheetsAPI.testarConexao();
+                
+                if (conectado) {
+                    mostrarFeedback('config-feedback', 'Configuração salva e conexão testada com sucesso!', 'success');
+                    atualizarStatusConexao(true);
+                    await carregarDados();
+                } else {
+                    mostrarFeedback('config-feedback', 'Configuração salva, mas conexão falhou', 'warning');
+                    atualizarStatusConexao(false);
+                }
+            } catch (error) {
+                console.error('Erro ao salvar configuração:', error);
+                mostrarFeedback('config-feedback', 'Erro ao salvar configuração', 'error');
+                atualizarStatusConexao(false);
+            }
+        }
+
+        function atualizarStatusConexao(conectado) {
+            const statusElement = document.getElementById('status-conexao');
+            if (statusElement) {
+                if (conectado) {
+                    statusElement.textContent = 'Conectado';
+                    statusElement.className = 'status-conectado';
+                } else {
+                    statusElement.textContent = 'Desconectado';
+                    statusElement.className = 'status-desconectado';
+                }
+            }
+        }
+
+        function abrirModalImpressao(conteudo) {
+            const modal = document.getElementById('print-modal');
+            const printContent = document.getElementById('print-content');
+            
+            printContent.innerHTML = conteudo;
+            modal.classList.add('show');
+        }
+
+        function closePrintModal() {
+            const modal = document.getElementById('print-modal');
+            modal.classList.remove('show');
+        }
+
+        document.getElementById('print-modal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'print-modal') {
+                closePrintModal();
+            }
+        });
+
+        // ============================================
+        // RELATÓRIOS
+        // ============================================
+
+        async function gerarRelatorio() {
+            const tipoRelatorio = document.getElementById('tipo-relatorio').value;
+            const dataInicio = new Date(document.getElementById('data-inicio-relatorio').value);
+            const dataFim = new Date(document.getElementById('data-fim-relatorio').value);
+
+            if (dataInicio > dataFim) {
+                mostrarFeedback('relatorio-content', 'Data inicial não pode ser maior que data final', 'error');
+                return;
+            }
+
+            try {
+                const movimentacoesPeriodo = await obterMovimentacoesPorPeriodo(dataInicio, dataFim);
+                
+                const entradas = movimentacoesPeriodo.filter(m => m.tipo === 'entrada').length;
+                const saidas = movimentacoesPeriodo.filter(m => m.tipo === 'saida').length;
+                
+                const usuariosUnicos = {};
+                movimentacoesPeriodo.forEach(mov => {
+                    if (!usuariosUnicos[mov.usuarioId]) {
+                        usuariosUnicos[mov.usuarioId] = {
+                            id: mov.usuarioId,
+                            nome: mov.usuarioNome,
+                            cpf: mov.usuarioCPF,
+                            movimentacoes: []
+                        };
+                    }
+                    usuariosUnicos[mov.usuarioId].movimentacoes.push(mov);
+                });
+
+                const usuarios = Object.values(usuariosUnicos);
+
+                let html = `
+                    <div class="relatorio-header">
+                        <h3>Relatório ${tipoRelatorio === 'semanal' ? 'Semanal' : 'Mensal'}</h3>
+                        <p>Período: ${formatarData(dataInicio)} a ${formatarData(dataFim)}</p>
+                    </div>
+
+                    <div class="relatorio-stats">
+                        <div class="stat-card">
+                            <div class="stat-number">${entradas}</div>
+                            <div class="stat-label">Entradas</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">${saidas}</div>
+                            <div class="stat-label">Saídas</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">${usuarios.length}</div>
+                            <div class="stat-label">Usuários Únicos</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">${movimentacoesPeriodo.length}</div>
+                            <div class="stat-label">Total de Movimentações</div>
+                        </div>
+                    </div>
+
+                    <h4>Detalhamento por Usuário</h4>
+                    <table class="relatorio-table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                                <th>Data/Hora</th>
+                                <th>Tipo</th>
+                                <th>Cuidador</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+
+                movimentacoesPeriodo.forEach(mov => {
+                    const tipo = mov.tipo === 'entrada' ? '↓ ENTRADA' : '↑ SAÍDA';
+                    const classe = mov.tipo === 'entrada' ? 'status-entrada' : 'status-saida';
+                    html += `
+                        <tr>
+                            <td>${mov.usuarioNome}</td>
+                            <td>${formatarCPF(mov.usuarioCPF)}</td>
+                            <td>${formatarDataHora(new Date(mov.dataHora))}</td>
+                            <td><span class="${classe}">${tipo}</span></td>
+                            <td>${mov.cuidador}</td>
+                        </tr>
+                    `;
+                });
+
+                html += `
+                        </tbody>
+                    </table>
+
+                    <hr class="divider">
+
+                    <h4>Lista de Usuários</h4>
+                    <table class="relatorio-table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                                <th>Movimentações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                `;
+
+                usuarios.forEach(usuario => {
+                    html += `
+                        <tr>
+                            <td>${usuario.nome}</td>
+                            <td>${formatarCPF(usuario.cpf)}</td>
+                            <td>${usuario.movimentacoes.length}</td>
+                        </tr>
+                    `;
+                });
+
+                html += `
+                        </tbody>
+                    </table>
+                `;
+
+                document.getElementById('relatorio-content').innerHTML = html;
+            } catch (error) {
+                console.error('Erro ao gerar relatório:', error);
+                document.getElementById('relatorio-content').innerHTML = '<p class="empty-state">Erro ao gerar relatório</p>';
+            }
+        }
+
+        function imprimirRelatorio() {
+            const conteudo = document.getElementById('relatorio-content').innerHTML;
+            if (conteudo.includes('empty-state') || conteudo === '') {
+                alert('Gere um relatório primeiro');
+                return;
+            }
+            abrirModalImpressao(conteudo);
+            setTimeout(() => window.print(), 100);
+        }
+
+        async function gerarPDFRelatorio() {
+            const conteudo = document.getElementById('relatorio-content').innerHTML;
+            if (conteudo.includes('empty-state') || conteudo === '') {
+                alert('Gere um relatório primeiro');
+                return;
+            }
+
+            try {
+                if (typeof html2pdf !== 'undefined') {
+                    const element = document.getElementById('relatorio-content');
+                    const opt = {
+                        margin: 10,
+                        filename: `relatorio-${new Date().toISOString().split('T')[0]}.pdf`,
+                        image: { type: 'jpeg', quality: 0.98 },
+                        html2canvas: { scale: 2 },
+                        jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+                    };
+                    html2pdf().set(opt).from(element).save();
+                } else {
+                    abrirModalImpressao(conteudo);
+                    setTimeout(() => window.print(), 100);
+                }
+            } catch (error) {
+                console.error('Erro ao gerar PDF:', error);
+                alert('Erro ao gerar PDF');
+            }
+        }
+
+        async function gerarRelatorioDiario() {
+            const data = new Date(document.getElementById('data-relatorio-diario').value);
+
+            try {
+                const usuariosPresentes = await obterUsuariosPresentes(data);
+
+                if (usuariosPresentes.length === 0) {
+                    document.getElementById('relatorio-diario-content').innerHTML = 
+                        '<p class="empty-state">Nenhum usuário presente nesta data</p>';
+                    return;
+                }
+
+                let html = `
+                    <div class="relatorio-header">
+                        <h3>Relatório Diário de Presença</h3>
+                        <p>Data: ${formatarData(data)}</p>
+                        <p>Total de Presentes: ${usuariosPresentes.length}</p>
+                    </div>
+
+                    <div class="presenca-list">
+                `;
+
+                usuariosPresentes.forEach((usuario, index) => {
+                    html += `
+                        <div class="presenca-item">
+                            <div class="presenca-info">
+                                <strong>${index + 1}. ${usuario.nome}</strong>
+                                <p>CPF: ${formatarCPF(usuario.cpf)}</p>
+                            </div>
+                            <div class="presenca-assinatura">Assinatura</div>
+                        </div>
+                    `;
+                });
+
+                html += `
+                    </div>
+
+                    <div style="margin-top: 2rem; text-align: center; font-size: 0.9rem; color: #7f8c8d;">
+                        <p>Responsável pela Verificação: _________________________</p>
+                        <p>Data: ${formatarData(data)}</p>
+                    </div>
+                `;
+
+                document.getElementById('relatorio-diario-content').innerHTML = html;
+            } catch (error) {
+                console.error('Erro ao gerar relatório diário:', error);
+                document.getElementById('relatorio-diario-content').innerHTML = 
+                    '<p class="empty-state">Erro ao gerar relatório</p>';
+            }
+        }
+
+        function imprimirRelatorioDiario() {
+            const conteudo = document.getElementById('relatorio-diario-content').innerHTML;
+            if (conteudo.includes('empty-state') || conteudo === '') {
+                alert('Gere um relatório primeiro');
+                return;
+            }
+            abrirModalImpressao(conteudo);
+            setTimeout(() => window.print(), 100);
+        }
+
+        async function gerarPDFRelatorioDiario() {
+            const conteudo = document.getElementById('relatorio-diario-content').innerHTML;
+            if (conteudo.includes('empty-state') || conteudo === '') {
+                alert('Gere um relatório primeiro');
+                return;
+            }
+
+            try {
+                if (typeof html2pdf !== 'undefined') {
+                    const element = document.getElementById('relatorio-diario-content');
+                    const opt = {
+                        margin: 10,
+                        filename: `presenca-${new Date().toISOString().split('T')[0]}.pdf`,
+                        image: { type: 'jpeg', quality: 0.98 },
+                        html2canvas: { scale: 2 },
+                        jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+                    };
+                    html2pdf().set(opt).from(element).save();
+                } else {
+                    abrirModalImpressao(conteudo);
+                    setTimeout(() => window.print(), 100);
+                }
+            } catch (error) {
+                console.error('Erro ao gerar PDF:', error);
+                alert('Erro ao gerar PDF');
+            }
+        }
+    </script>
 </body>
 </html>
