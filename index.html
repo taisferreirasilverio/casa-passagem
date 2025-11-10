@@ -4,12 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Gestão - Casa Passagem</title>
-    <!-- CSS Local -->
     <style>
-        /* ============================================
-           VARIÁVEIS E RESET
-           ============================================ */
-
         :root {
             --primary-color: #2c3e50;
             --secondary-color: #3498db;
@@ -41,10 +36,6 @@
             line-height: 1.6;
             min-height: 100vh;
         }
-
-        /* ============================================
-           HEADER
-           ============================================ */
 
         .header {
             background: linear-gradient(135deg, var(--primary-color) 0%, #34495e 100%);
@@ -108,10 +99,6 @@
             transform: translateY(-2px);
         }
 
-        /* ============================================
-           CONTAINER E LAYOUT
-           ============================================ */
-
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -121,10 +108,6 @@
         .main-content {
             padding: 2rem 0;
         }
-
-        /* ============================================
-           NAVEGAÇÃO COM ABAS
-           ============================================ */
 
         .nav-tabs {
             display: flex;
@@ -164,10 +147,6 @@
             color: white;
             border-color: var(--secondary-color);
         }
-
-        /* ============================================
-           CARDS E CONTEÚDO
-           ============================================ */
 
         .card {
             background: white;
@@ -211,10 +190,6 @@
                 transform: translateY(0);
             }
         }
-
-        /* ============================================
-           FORMULÁRIOS
-           ============================================ */
 
         .form-grid {
             display: grid;
@@ -263,16 +238,6 @@
             min-height: 100px;
         }
 
-        .form-group small {
-            font-size: 0.85rem;
-            color: #7f8c8d;
-            margin-top: 0.25rem;
-        }
-
-        /* ============================================
-           BOTÕES
-           ============================================ */
-
         .btn {
             padding: 0.75rem 1.5rem;
             border: none;
@@ -284,7 +249,6 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            text-decoration: none;
         }
 
         .btn:hover {
@@ -334,16 +298,6 @@
             justify-content: center;
         }
 
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        /* ============================================
-           ENTRADA/SAÍDA
-           ============================================ */
-
         .entrada-saida-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -365,15 +319,6 @@
         .entrada-saida-card.saida {
             border-left-color: var(--danger-color);
         }
-
-        .entrada-saida-card h3 {
-            margin-bottom: 1.5rem;
-            color: var(--primary-color);
-        }
-
-        /* ============================================
-           LISTAS
-           ============================================ */
 
         .lista-usuarios,
         .lista-movimentacoes,
@@ -422,10 +367,6 @@
             font-weight: 600;
         }
 
-        /* ============================================
-           RELATÓRIOS
-           ============================================ */
-
         .relatorio-controls {
             display: flex;
             gap: 1rem;
@@ -451,11 +392,6 @@
             margin-bottom: 2rem;
             border-bottom: 2px solid var(--secondary-color);
             padding-bottom: 1rem;
-        }
-
-        .relatorio-header h3 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
         }
 
         .relatorio-stats {
@@ -508,14 +444,6 @@
             background: var(--light-color);
         }
 
-        .relatorio-table tbody tr:nth-child(even) {
-            background: #f9f9f9;
-        }
-
-        /* ============================================
-           PRESENÇA DIÁRIA
-           ============================================ */
-
         .presenca-list {
             background: white;
             border-radius: 0.5rem;
@@ -550,10 +478,6 @@
             color: #7f8c8d;
         }
 
-        /* ============================================
-           FEEDBACK E ESTADOS
-           ============================================ */
-
         .feedback {
             padding: 1rem;
             border-radius: 0.5rem;
@@ -584,15 +508,10 @@
             border-left: 4px solid var(--warning-color);
         }
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .feedback.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border-left: 4px solid var(--secondary-color);
         }
 
         .empty-state {
@@ -601,10 +520,6 @@
             padding: 2rem;
             font-style: italic;
         }
-
-        /* ============================================
-           MODAL
-           ============================================ */
 
         .modal {
             display: none;
@@ -615,7 +530,6 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
-            animation: fadeIn 0.3s ease;
         }
 
         .modal.show {
@@ -631,17 +545,11 @@
             box-shadow: var(--shadow-lg);
             max-width: 500px;
             width: 90%;
-            animation: slideUp 0.3s ease;
         }
 
         .modal-content h2 {
             color: var(--primary-color);
             margin-bottom: 1rem;
-        }
-
-        .modal-content p {
-            color: #7f8c8d;
-            margin-bottom: 1.5rem;
         }
 
         .modal-print {
@@ -650,46 +558,11 @@
             overflow-y: auto;
         }
 
-        .btn-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #7f8c8d;
-            transition: var(--transition);
-        }
-
-        .btn-close:hover {
-            color: var(--primary-color);
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ============================================
-           DIVISOR
-           ============================================ */
-
         .divider {
             border: none;
             border-top: 2px solid var(--border-color);
             margin: 2rem 0;
         }
-
-        /* ============================================
-           STATUS
-           ============================================ */
 
         .status-conectado {
             color: var(--success-color);
@@ -701,9 +574,34 @@
             font-weight: 600;
         }
 
-        /* ============================================
-           RESPONSIVIDADE
-           ============================================ */
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-box strong {
+            color: var(--primary-color);
+        }
+
+        .debug-box {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .debug-box p {
+            margin: 0.25rem 0;
+            word-break: break-all;
+        }
 
         @media (max-width: 768px) {
             .header-content {
@@ -714,10 +612,6 @@
 
             .logo-section {
                 flex-direction: column;
-            }
-
-            .logo-section h1 {
-                font-size: 1.3rem;
             }
 
             .nav-tabs {
@@ -745,15 +639,6 @@
                 width: 100%;
             }
 
-            .relatorio-table {
-                font-size: 0.9rem;
-            }
-
-            .relatorio-table th,
-            .relatorio-table td {
-                padding: 0.75rem 0.5rem;
-            }
-
             .presenca-item {
                 grid-template-columns: 1fr;
                 gap: 0.5rem;
@@ -773,61 +658,6 @@
             }
         }
 
-        @media (max-width: 480px) {
-            .header {
-                padding: 1rem 0;
-            }
-
-            .header-content {
-                padding: 0 0.5rem;
-            }
-
-            .logo-section i {
-                font-size: 2rem;
-            }
-
-            .logo-section h1 {
-                font-size: 1.1rem;
-            }
-
-            .logo-section p {
-                font-size: 0.8rem;
-            }
-
-            .card {
-                padding: 1rem;
-                margin-bottom: 1rem;
-            }
-
-            .card h2 {
-                font-size: 1.2rem;
-                margin-bottom: 1rem;
-            }
-
-            .btn {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
-            }
-
-            .tab-btn {
-                padding: 0.6rem 0.75rem;
-                font-size: 0.85rem;
-            }
-
-            .relatorio-table {
-                font-size: 0.8rem;
-            }
-
-            .relatorio-table th,
-            .relatorio-table td {
-                padding: 0.5rem 0.25rem;
-            }
-        }
-
-        /* ============================================
-           IMPRESSÃO
-           ============================================ */
-
         @media print {
             body {
                 background: white;
@@ -837,7 +667,8 @@
             .nav-tabs,
             .relatorio-controls,
             .btn,
-            .modal {
+            .modal,
+            .debug-box {
                 display: none !important;
             }
 
@@ -861,12 +692,10 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Biblioteca para geração de PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
         <header class="header">
             <div class="header-content">
                 <div class="logo-section">
@@ -881,9 +710,7 @@
             </div>
         </header>
 
-        <!-- Main Content -->
         <main class="main-content">
-            <!-- Navigation Tabs -->
             <nav class="nav-tabs">
                 <button class="tab-btn active" data-tab="cadastro">
                     <i class="fas fa-user-plus"></i> Cadastro
@@ -905,31 +732,33 @@
                 </button>
             </nav>
 
-            <!-- Tab Content -->
             <div class="tab-content">
                 <!-- Aba Cadastro -->
                 <section id="cadastro" class="tab-pane active">
                     <div class="card">
                         <h2><i class="fas fa-user-plus"></i> Cadastro de Novo Usuário</h2>
+                        <div class="info-box">
+                            <strong>ℹ️ Informação:</strong> Os dados são sincronizados com o Google Sheets. Verifique a aba Configurações se houver problemas.
+                        </div>
                         <form id="form-cadastro" class="form-grid">
                             <div class="form-group">
                                 <label for="nome">Nome Completo *</label>
-                                <input type="text" id="nome" name="nome" required placeholder="Digite o nome completo">
+                                <input type="text" id="nome" required placeholder="Digite o nome completo">
                             </div>
 
                             <div class="form-group">
                                 <label for="cpf">CPF *</label>
-                                <input type="text" id="cpf" name="cpf" required placeholder="000.000.000-00">
+                                <input type="text" id="cpf" required placeholder="000.000.000-00">
                             </div>
 
                             <div class="form-group">
                                 <label for="responsavel">Responsável pelo Cadastro *</label>
-                                <input type="text" id="responsavel" name="responsavel" required placeholder="Nome do cuidador">
+                                <input type="text" id="responsavel" required placeholder="Nome do cuidador">
                             </div>
 
                             <div class="form-group full-width">
                                 <label for="observacoes">Observações</label>
-                                <textarea id="observacoes" name="observacoes" placeholder="Ex: Chegou com pertences, necessita acompanhamento especial..."></textarea>
+                                <textarea id="observacoes" placeholder="Ex: Chegou com pertences, necessita acompanhamento especial..."></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-primary full-width">
@@ -1102,33 +931,57 @@
                     <div class="card">
                         <h2><i class="fas fa-cog"></i> Configurações</h2>
                         
-                        <div class="config-section">
-                            <h3>Conexão com Google Sheets</h3>
-                            <div class="form-group">
-                                <label for="spreadsheet-id">ID da Planilha Google Sheets:</label>
-                                <input type="text" id="spreadsheet-id" placeholder="Insira o ID da planilha">
-                                <small>Encontre o ID na URL da sua planilha: https://docs.google.com/spreadsheets/d/<strong>ID_AQUI</strong>/edit</small>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="api-key">Chave de API do Google:</label>
-                                <input type="password" id="api-key" placeholder="Insira sua chave de API">
-                                <small>Gere uma chave em: https://console.cloud.google.com/</small>
-                            </div>
-
-                            <button id="btn-salvar-config" class="btn btn-primary">
-                                <i class="fas fa-save"></i> Salvar Configurações
-                            </button>
-                            <div id="config-feedback" class="feedback"></div>
+                        <div style="margin-bottom: 2rem;">
+                            <h3>📊 Status do Sistema</h3>
+                            <p><strong>Usuários Cadastrados (Local):</strong> <span id="total-usuarios">0</span></p>
+                            <p><strong>Movimentações Registradas (Local):</strong> <span id="total-movimentacoes">0</span></p>
+                            <p><strong>Status Google Sheets:</strong> <span id="status-google-sheets" class="status-desconectado">Desconectado</span></p>
                         </div>
 
                         <hr class="divider">
 
-                        <div class="config-section">
-                            <h3>Informações do Sistema</h3>
-                            <p><strong>Versão:</strong> 1.0.0</p>
-                            <p><strong>Última atualização:</strong> <span id="ultima-atualizacao">-</span></p>
-                            <p><strong>Status da Conexão:</strong> <span id="status-conexao" class="status-desconectado">Desconectado</span></p>
+                        <div style="margin-bottom: 2rem;">
+                            <h3>🔗 Integração com Google Sheets</h3>
+                            <p style="margin-bottom: 1rem;">Configure sua planilha Google Sheets para sincronizar dados automaticamente.</p>
+                            
+                            <div class="form-group">
+                                <label for="spreadsheet-id">ID da Planilha Google Sheets *</label>
+                                <input type="text" id="spreadsheet-id" placeholder="Insira o ID da planilha">
+                                <small>Encontre o ID na URL: https://docs.google.com/spreadsheets/d/<strong>ID_AQUI</strong>/edit</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="api-key">Chave de API do Google *</label>
+                                <input type="password" id="api-key" placeholder="Insira sua chave de API">
+                                <small>Gere em: https://console.cloud.google.com/ → APIs e Serviços → Credenciais</small>
+                            </div>
+
+                            <button id="btn-testar-conexao" class="btn btn-secondary">
+                                <i class="fas fa-plug"></i> Testar Conexão
+                            </button>
+                            <button id="btn-salvar-config" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Salvar Configurações
+                            </button>
+                            <div id="config-feedback" class="feedback"></div>
+
+                            <div id="debug-info" class="debug-box" style="display: none;">
+                                <p><strong>Informações de Diagnóstico:</strong></p>
+                                <div id="debug-content"></div>
+                            </div>
+                        </div>
+
+                        <hr class="divider">
+
+                        <div>
+                            <h3>💾 Backup e Exportação</h3>
+                            <p>Faça backup dos seus dados locais:</p>
+                            <button id="btn-exportar-json" class="btn btn-secondary" style="margin-top: 1rem;">
+                                <i class="fas fa-download"></i> Exportar Dados (JSON)
+                            </button>
+                            <button id="btn-importar-json" class="btn btn-secondary" style="margin-top: 0.5rem;">
+                                <i class="fas fa-upload"></i> Importar Dados (JSON)
+                            </button>
+                            <input type="file" id="import-file" style="display: none;" accept=".json">
                         </div>
                     </div>
                 </section>
@@ -1153,44 +1006,25 @@
     <!-- Modal de Impressão -->
     <div id="print-modal" class="modal">
         <div class="modal-content modal-print">
-            <button class="btn-close" onclick="closePrintModal()">×</button>
+            <button style="position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer;" onclick="document.getElementById('print-modal').classList.remove('show')">×</button>
             <div id="print-content"></div>
         </div>
     </div>
 
-    <!-- SCRIPTS INLINE - TUDO EM UM ARQUIVO -->
     <script>
         // ============================================
-        // CONFIGURAÇÃO DO SISTEMA
+        // VARIÁVEIS GLOBAIS
         // ============================================
 
-        const CONFIG = {
-            spreadsheetId: localStorage.getItem('spreadsheetId') || '',
-            apiKey: localStorage.getItem('apiKey') || '',
-            
-            sheets: {
-                usuarios: 'Usuários',
-                movimentacoes: 'Movimentações',
-                relatorios: 'Relatórios'
-            },
+        let usuarioLogado = null;
+        let usuariosCadastrados = [];
+        let movimentacoes = [];
+        let spreadsheetId = null;
+        let apiKey = null;
 
-            dateFormat: 'dd/mm/yyyy',
-            timeFormat: 'hh:mm',
-
-            messages: {
-                success: 'Operação realizada com sucesso!',
-                error: 'Erro ao processar a solicitação',
-                loading: 'Carregando...',
-                noData: 'Nenhum dado encontrado'
-            }
-        };
-
-        function saveConfig(spreadsheetId, apiKey) {
-            localStorage.setItem('spreadsheetId', spreadsheetId);
-            localStorage.setItem('apiKey', apiKey);
-            CONFIG.spreadsheetId = spreadsheetId;
-            CONFIG.apiKey = apiKey;
-        }
+        // ============================================
+        // FUNÇÕES UTILITÁRIAS
+        // ============================================
 
         function validarCPF(cpf) {
             cpf = cpf.replace(/[^\d]/g, '');
@@ -1198,11 +1032,10 @@
             if (/^(\d)\1{10}$/.test(cpf)) return false;
 
             let sum = 0;
-            let remainder;
             for (let i = 1; i <= 9; i++) {
                 sum += parseInt(cpf.substring(i - 1, i)) * (11 - i);
             }
-            remainder = (sum * 10) % 11;
+            let remainder = (sum * 10) % 11;
             if (remainder === 10 || remainder === 11) remainder = 0;
             if (remainder !== parseInt(cpf.substring(9, 10))) return false;
 
@@ -1244,23 +1077,11 @@
             return `${formatarData(data)} ${formatarHora(data)}`;
         }
 
-        function getDataAtual() {
-            const hoje = new Date();
-            return formatarData(hoje);
-        }
-
-        function getHoraAtual() {
-            const agora = new Date();
-            return formatarHora(agora);
-        }
-
         function mostrarFeedback(elementId, mensagem, tipo = 'success') {
             const elemento = document.getElementById(elementId);
             if (!elemento) return;
-
             elemento.textContent = mensagem;
             elemento.className = `feedback show ${tipo}`;
-
             setTimeout(() => {
                 elemento.classList.remove('show');
             }, 5000);
@@ -1268,324 +1089,175 @@
 
         function limparFormulario(formId) {
             const form = document.getElementById(formId);
-            if (form) {
-                form.reset();
-            }
+            if (form) form.reset();
         }
 
-        function dataEntrePeriodo(data, dataInicio, dataFim) {
-            const d = new Date(data);
-            const di = new Date(dataInicio);
-            const df = new Date(dataFim);
-            return d >= di && d <= df;
+        function adicionarDebug(mensagem) {
+            const debugContent = document.getElementById('debug-content');
+            if (debugContent) {
+                const p = document.createElement('p');
+                p.textContent = mensagem;
+                debugContent.appendChild(p);
+            }
+            console.log('[DEBUG]', mensagem);
         }
 
         // ============================================
-        // INTEGRAÇÃO COM GOOGLE SHEETS API
+        // GERENCIAMENTO DE DADOS (localStorage)
         // ============================================
 
-        class GoogleSheetsAPI {
-            constructor(spreadsheetId, apiKey) {
-                this.spreadsheetId = spreadsheetId;
-                this.apiKey = apiKey;
-                this.baseUrl = 'https://sheets.googleapis.com/v4/spreadsheets';
-            }
+        function salvarDados() {
+            localStorage.setItem('usuariosCadastrados', JSON.stringify(usuariosCadastrados));
+            localStorage.setItem('movimentacoes', JSON.stringify(movimentacoes));
+            atualizarEstatisticas();
+        }
 
-            async obterDados(sheetName) {
-                if (!this.spreadsheetId || !this.apiKey) {
-                    throw new Error('Spreadsheet ID ou API Key não configurados');
-                }
+        function carregarDados() {
+            const usuarios = localStorage.getItem('usuariosCadastrados');
+            const movs = localStorage.getItem('movimentacoes');
+            
+            if (usuarios) usuariosCadastrados = JSON.parse(usuarios);
+            if (movs) movimentacoes = JSON.parse(movs);
+            
+            atualizarSelectsUsuarios();
+            atualizarEstatisticas();
+        }
 
-                try {
-                    const url = `${this.baseUrl}/${this.spreadsheetId}/values/${sheetName}?key=${this.apiKey}`;
-                    const response = await fetch(url);
-                    
-                    if (!response.ok) {
-                        throw new Error(`Erro ao obter dados: ${response.statusText}`);
-                    }
+        function carregarConfiguracao() {
+            spreadsheetId = localStorage.getItem('spreadsheetId');
+            apiKey = localStorage.getItem('apiKey');
 
-                    const data = await response.json();
-                    return data.values || [];
-                } catch (error) {
-                    console.error('Erro ao obter dados do Google Sheets:', error);
-                    throw error;
-                }
-            }
+            if (spreadsheetId) document.getElementById('spreadsheet-id').value = spreadsheetId;
+            if (apiKey) document.getElementById('api-key').value = apiKey;
 
-            async adicionarDados(sheetName, valores) {
-                if (!this.spreadsheetId || !this.apiKey) {
-                    throw new Error('Spreadsheet ID ou API Key não configurados');
-                }
-
-                try {
-                    const url = `${this.baseUrl}/${this.spreadsheetId}/values/${sheetName}:append?valueInputOption=USER_ENTERED&key=${this.apiKey}`;
-                    
-                    const response = await fetch(url, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            values: [valores]
-                        })
-                    });
-
-                    if (!response.ok) {
-                        throw new Error(`Erro ao adicionar dados: ${response.statusText}`);
-                    }
-
-                    return await response.json();
-                } catch (error) {
-                    console.error('Erro ao adicionar dados ao Google Sheets:', error);
-                    throw error;
-                }
-            }
-
-            async testarConexao() {
-                try {
-                    await this.obterDados(CONFIG.sheets.usuarios);
-                    return true;
-                } catch (error) {
-                    console.error('Erro ao testar conexão:', error);
-                    return false;
-                }
+            if (spreadsheetId && apiKey) {
+                testarConexaoGoogle();
             }
         }
 
-        let sheetsAPI = null;
-
-        function inicializarAPI() {
-            if (CONFIG.spreadsheetId && CONFIG.apiKey) {
-                sheetsAPI = new GoogleSheetsAPI(CONFIG.spreadsheetId, CONFIG.apiKey);
-                return true;
-            }
-            return false;
+        function atualizarEstatisticas() {
+            document.getElementById('total-usuarios').textContent = usuariosCadastrados.length;
+            document.getElementById('total-movimentacoes').textContent = movimentacoes.length;
         }
 
-        async function obterUsuarios() {
-            if (!sheetsAPI) {
-                throw new Error('API não inicializada');
+        // ============================================
+        // INTEGRAÇÃO COM GOOGLE SHEETS
+        // ============================================
+
+        async function testarConexaoGoogle() {
+            const spreadsheetId = document.getElementById('spreadsheet-id').value.trim();
+            const apiKey = document.getElementById('api-key').value.trim();
+
+            if (!spreadsheetId || !apiKey) {
+                mostrarFeedback('config-feedback', 'Preencha o ID da Planilha e a Chave de API', 'warning');
+                return;
             }
+
+            document.getElementById('debug-info').style.display = 'block';
+            document.getElementById('debug-content').innerHTML = '';
+
+            adicionarDebug(`Testando conexão com Google Sheets...`);
+            adicionarDebug(`Spreadsheet ID: ${spreadsheetId.substring(0, 10)}...`);
+            adicionarDebug(`API Key: ${apiKey.substring(0, 10)}...`);
 
             try {
-                const dados = await sheetsAPI.obterDados(CONFIG.sheets.usuarios);
-                
-                if (dados.length > 1) {
-                    return dados.slice(1).map(row => ({
-                        id: row[0] || '',
-                        nome: row[1] || '',
-                        cpf: row[2] || '',
-                        responsavel: row[3] || '',
-                        observacoes: row[4] || '',
-                        dataCadastro: row[5] || '',
-                        status: row[6] || 'Ativo'
-                    }));
+                const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}?key=${apiKey}`;
+                adicionarDebug(`URL de Teste: ${url.substring(0, 50)}...`);
+
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (response.ok) {
+                    adicionarDebug(`✓ Conexão bem-sucedida!`);
+                    adicionarDebug(`Título da Planilha: ${data.properties.title}`);
+                    document.getElementById('status-google-sheets').textContent = 'Conectado';
+                    document.getElementById('status-google-sheets').className = 'status-conectado';
+                    mostrarFeedback('config-feedback', 'Conexão com Google Sheets bem-sucedida!', 'success');
+                } else {
+                    adicionarDebug(`✗ Erro ${response.status}: ${data.error.message}`);
+                    document.getElementById('status-google-sheets').textContent = 'Desconectado';
+                    document.getElementById('status-google-sheets').className = 'status-desconectado';
+                    mostrarFeedback('config-feedback', `Erro: ${data.error.message}`, 'error');
                 }
-                return [];
             } catch (error) {
-                console.error('Erro ao obter usuários:', error);
-                throw error;
+                adicionarDebug(`✗ Erro de Conexão: ${error.message}`);
+                document.getElementById('status-google-sheets').textContent = 'Desconectado';
+                document.getElementById('status-google-sheets').className = 'status-desconectado';
+                mostrarFeedback('config-feedback', `Erro de Conexão: ${error.message}`, 'error');
             }
         }
 
-        async function cadastrarUsuario(nome, cpf, responsavel, observacoes) {
-            if (!sheetsAPI) {
-                throw new Error('API não inicializada');
+        async function cadastrarNoGoogle(usuario) {
+            if (!spreadsheetId || !apiKey) {
+                console.log('Google Sheets não configurado. Usando apenas localStorage.');
+                return;
             }
 
             try {
-                const id = Date.now().toString();
-                const dataCadastro = new Date().toISOString();
-                
-                const valores = [
-                    id,
-                    nome,
-                    cpf,
-                    responsavel,
-                    observacoes,
-                    dataCadastro,
-                    'Ativo'
-                ];
+                const values = [[
+                    usuario.nome,
+                    usuario.cpf,
+                    usuario.responsavel,
+                    usuario.observacoes,
+                    new Date(usuario.dataCadastro).toLocaleString('pt-BR')
+                ]];
 
-                await sheetsAPI.adicionarDados(CONFIG.sheets.usuarios, valores);
-                return { id, nome, cpf, responsavel, observacoes, dataCadastro };
-            } catch (error) {
-                console.error('Erro ao cadastrar usuário:', error);
-                throw error;
-            }
-        }
+                const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Cadastros!A:E:append?valueInputOption=USER_ENTERED&key=${apiKey}`;
 
-        async function obterMovimentacoes() {
-            if (!sheetsAPI) {
-                throw new Error('API não inicializada');
-            }
-
-            try {
-                const dados = await sheetsAPI.obterDados(CONFIG.sheets.movimentacoes);
-                
-                if (dados.length > 1) {
-                    return dados.slice(1).map(row => ({
-                        id: row[0] || '',
-                        usuarioId: row[1] || '',
-                        usuarioNome: row[2] || '',
-                        usuarioCPF: row[3] || '',
-                        tipo: row[4] || '',
-                        dataHora: row[5] || '',
-                        cuidador: row[6] || ''
-                    }));
-                }
-                return [];
-            } catch (error) {
-                console.error('Erro ao obter movimentações:', error);
-                throw error;
-            }
-        }
-
-        async function registrarEntrada(usuarioId, usuarioNome, usuarioCPF, cuidador) {
-            if (!sheetsAPI) {
-                throw new Error('API não inicializada');
-            }
-
-            try {
-                const id = Date.now().toString();
-                const dataHora = new Date().toISOString();
-                
-                const valores = [
-                    id,
-                    usuarioId,
-                    usuarioNome,
-                    usuarioCPF,
-                    'entrada',
-                    dataHora,
-                    cuidador
-                ];
-
-                await sheetsAPI.adicionarDados(CONFIG.sheets.movimentacoes, valores);
-                return { id, usuarioId, usuarioNome, usuarioCPF, tipo: 'entrada', dataHora, cuidador };
-            } catch (error) {
-                console.error('Erro ao registrar entrada:', error);
-                throw error;
-            }
-        }
-
-        async function registrarSaida(usuarioId, usuarioNome, usuarioCPF, cuidador) {
-            if (!sheetsAPI) {
-                throw new Error('API não inicializada');
-            }
-
-            try {
-                const id = Date.now().toString();
-                const dataHora = new Date().toISOString();
-                
-                const valores = [
-                    id,
-                    usuarioId,
-                    usuarioNome,
-                    usuarioCPF,
-                    'saida',
-                    dataHora,
-                    cuidador
-                ];
-
-                await sheetsAPI.adicionarDados(CONFIG.sheets.movimentacoes, valores);
-                return { id, usuarioId, usuarioNome, usuarioCPF, tipo: 'saida', dataHora, cuidador };
-            } catch (error) {
-                console.error('Erro ao registrar saída:', error);
-                throw error;
-            }
-        }
-
-        async function buscarUsuario(termo) {
-            if (!sheetsAPI) {
-                throw new Error('API não inicializada');
-            }
-
-            try {
-                const usuarios = await obterUsuarios();
-                const movimentacoes = await obterMovimentacoes();
-
-                const termoLower = termo.toLowerCase();
-                const usuariosEncontrados = usuarios.filter(u => 
-                    u.nome.toLowerCase().includes(termoLower) || 
-                    u.cpf.includes(termo)
-                );
-
-                return usuariosEncontrados.map(usuario => {
-                    const movs = movimentacoes.filter(m => m.usuarioId === usuario.id);
-                    return {
-                        ...usuario,
-                        movimentacoes: movs
-                    };
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ values })
                 });
-            } catch (error) {
-                console.error('Erro ao buscar usuário:', error);
-                throw error;
-            }
-        }
 
-        async function obterUsuariosPresentes(data) {
-            if (!sheetsAPI) {
-                throw new Error('API não inicializada');
-            }
-
-            try {
-                const usuarios = await obterUsuarios();
-                const movimentacoes = await obterMovimentacoes();
-
-                const dataStr = formatarData(data);
-                const usuariosPresentes = [];
-
-                for (const usuario of usuarios) {
-                    const movsUsuario = movimentacoes.filter(m => m.usuarioId === usuario.id);
-                    
-                    const movsDodia = movsUsuario.filter(m => {
-                        const dataMov = formatarData(new Date(m.dataHora));
-                        return dataMov === dataStr;
-                    });
-
-                    if (movsDodia.length > 0) {
-                        const ultimaMov = movsDodia[movsDodia.length - 1];
-                        if (ultimaMov.tipo === 'entrada') {
-                            usuariosPresentes.push({
-                                ...usuario,
-                                ultimaMovimentacao: ultimaMov
-                            });
-                        }
-                    }
+                if (!response.ok) {
+                    const error = await response.json();
+                    console.error('Erro ao enviar para Google Sheets:', error);
                 }
-
-                return usuariosPresentes;
             } catch (error) {
-                console.error('Erro ao obter usuários presentes:', error);
-                throw error;
+                console.error('Erro na integração com Google Sheets:', error);
             }
         }
 
-        async function obterMovimentacoesPorPeriodo(dataInicio, dataFim) {
-            if (!sheetsAPI) {
-                throw new Error('API não inicializada');
+        async function registrarMovimentacaoGoogle(movimentacao) {
+            if (!spreadsheetId || !apiKey) {
+                console.log('Google Sheets não configurado. Usando apenas localStorage.');
+                return;
             }
 
             try {
-                const movimentacoes = await obterMovimentacoes();
-                
-                return movimentacoes.filter(m => {
-                    const dataMov = new Date(m.dataHora);
-                    return dataEntrePeriodo(dataMov, dataInicio, dataFim);
+                const values = [[
+                    movimentacao.usuarioNome,
+                    movimentacao.usuarioCPF,
+                    movimentacao.tipo.toUpperCase(),
+                    new Date(movimentacao.dataHora).toLocaleString('pt-BR'),
+                    movimentacao.cuidador
+                ]];
+
+                const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Movimentacoes!A:E:append?valueInputOption=USER_ENTERED&key=${apiKey}`;
+
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ values })
                 });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    console.error('Erro ao enviar movimentação para Google Sheets:', error);
+                }
             } catch (error) {
-                console.error('Erro ao obter movimentações por período:', error);
-                throw error;
+                console.error('Erro na integração com Google Sheets:', error);
             }
         }
 
         // ============================================
-        // APLICAÇÃO PRINCIPAL
+        // INICIALIZAÇÃO
         // ============================================
-
-        let usuarioLogado = null;
-        let usuariosCadastrados = [];
-        let movimentacoes = [];
 
         document.addEventListener('DOMContentLoaded', () => {
             const usuarioSalvo = localStorage.getItem('usuarioLogado');
@@ -1593,21 +1265,16 @@
                 usuarioLogado = usuarioSalvo;
                 document.getElementById('login-modal').classList.remove('show');
                 document.getElementById('current-user').textContent = usuarioLogado;
-                inicializarSistema();
+                carregarDados();
+                carregarConfiguracao();
             }
 
             setupEventListeners();
         });
 
-        function mostrarLoginModal() {
-            const modal = document.getElementById('login-modal');
-            modal.classList.add('show');
-        }
-
-        function fecharLoginModal() {
-            const modal = document.getElementById('login-modal');
-            modal.classList.remove('show');
-        }
+        // ============================================
+        // LOGIN
+        // ============================================
 
         document.getElementById('form-login')?.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -1617,56 +1284,21 @@
                 usuarioLogado = nome;
                 localStorage.setItem('usuarioLogado', nome);
                 document.getElementById('current-user').textContent = nome;
-                fecharLoginModal();
-                inicializarSistema();
+                document.getElementById('login-modal').classList.remove('show');
+                carregarDados();
+                carregarConfiguracao();
             }
         });
 
         document.getElementById('logout-btn')?.addEventListener('click', () => {
             localStorage.removeItem('usuarioLogado');
             usuarioLogado = null;
-            mostrarLoginModal();
+            document.getElementById('login-modal').classList.add('show');
         });
 
-        async function inicializarSistema() {
-            if (inicializarAPI()) {
-                await carregarDados();
-                atualizarStatusConexao(true);
-            } else {
-                atualizarStatusConexao(false);
-            }
-
-            carregarDadosLocais();
-        }
-
-        async function carregarDados() {
-            try {
-                usuariosCadastrados = await obterUsuarios();
-                movimentacoes = await obterMovimentacoes();
-                atualizarSelectsUsuarios();
-            } catch (error) {
-                console.error('Erro ao carregar dados:', error);
-            }
-        }
-
-        function carregarDadosLocais() {
-            const usuariosLocal = localStorage.getItem('usuariosCadastrados');
-            const movimentacoesLocal = localStorage.getItem('movimentacoes');
-
-            if (usuariosLocal) {
-                usuariosCadastrados = JSON.parse(usuariosLocal);
-            }
-            if (movimentacoesLocal) {
-                movimentacoes = JSON.parse(movimentacoesLocal);
-            }
-
-            atualizarSelectsUsuarios();
-        }
-
-        function salvarDadosLocais() {
-            localStorage.setItem('usuariosCadastrados', JSON.stringify(usuariosCadastrados));
-            localStorage.setItem('movimentacoes', JSON.stringify(movimentacoes));
-        }
+        // ============================================
+        // NAVEGAÇÃO DE ABAS
+        // ============================================
 
         function setupEventListeners() {
             document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -1693,7 +1325,15 @@
             document.getElementById('btn-imprimir-diario')?.addEventListener('click', imprimirRelatorioDiario);
             document.getElementById('btn-pdf-diario')?.addEventListener('click', gerarPDFRelatorioDiario);
 
+            document.getElementById('btn-testar-conexao')?.addEventListener('click', testarConexaoGoogle);
+            document.getElementById('btn-salvar-config')?.addEventListener('submit', salvarConfiguracao);
             document.getElementById('btn-salvar-config')?.addEventListener('click', salvarConfiguracao);
+
+            document.getElementById('btn-exportar-json')?.addEventListener('click', exportarJSON);
+            document.getElementById('btn-importar-json')?.addEventListener('click', () => {
+                document.getElementById('import-file').click();
+            });
+            document.getElementById('import-file')?.addEventListener('change', importarJSON);
 
             const hoje = new Date();
             document.getElementById('data-relatorio-diario').valueAsDate = hoje;
@@ -1715,7 +1355,11 @@
             }
         }
 
-        async function handleCadastro(e) {
+        // ============================================
+        // CADASTRO
+        // ============================================
+
+        function handleCadastro(e) {
             e.preventDefault();
 
             const nome = document.getElementById('nome').value.trim();
@@ -1728,24 +1372,31 @@
                 return;
             }
 
-            if (usuariosCadastrados.some(u => u.cpf === cpf)) {
+            if (usuariosCadastrados.some(u => u.cpf.replace(/[^\d]/g, '') === cpf.replace(/[^\d]/g, ''))) {
                 mostrarFeedback('cadastro-feedback', 'Este CPF já está cadastrado', 'error');
                 return;
             }
 
-            try {
-                const usuario = await cadastrarUsuario(nome, cpf, responsavel, observacoes);
-                usuariosCadastrados.push(usuario);
-                salvarDadosLocais();
-                atualizarSelectsUsuarios();
-                atualizarListaCadastros();
-                
-                mostrarFeedback('cadastro-feedback', 'Usuário cadastrado com sucesso!', 'success');
-                limparFormulario('form-cadastro');
-            } catch (error) {
-                console.error('Erro ao cadastrar:', error);
-                mostrarFeedback('cadastro-feedback', 'Erro ao cadastrar usuário. Verifique a conexão com Google Sheets.', 'error');
-            }
+            const usuario = {
+                id: Date.now().toString(),
+                nome,
+                cpf: cpf.replace(/[^\d]/g, ''),
+                responsavel,
+                observacoes,
+                dataCadastro: new Date().toISOString(),
+                status: 'Ativo'
+            };
+
+            usuariosCadastrados.push(usuario);
+            salvarDados();
+            atualizarSelectsUsuarios();
+            atualizarListaCadastros();
+            
+            // Tenta enviar para Google Sheets (não bloqueia se falhar)
+            cadastrarNoGoogle(usuario);
+            
+            mostrarFeedback('cadastro-feedback', 'Usuário cadastrado com sucesso!', 'success');
+            limparFormulario('form-cadastro');
         }
 
         function atualizarListaCadastros() {
@@ -1785,7 +1436,11 @@
             }
         }
 
-        async function handleEntrada(e) {
+        // ============================================
+        // ENTRADA/SAÍDA
+        // ============================================
+
+        function handleEntrada(e) {
             e.preventDefault();
 
             const usuarioId = document.getElementById('entrada-usuario').value;
@@ -1802,21 +1457,28 @@
                 return;
             }
 
-            try {
-                const movimentacao = await registrarEntrada(usuario.id, usuario.nome, usuario.cpf, cuidador);
-                movimentacoes.push(movimentacao);
-                salvarDadosLocais();
-                atualizarListaMovimentacoes();
-                
-                mostrarFeedback('entrada-feedback', `Entrada registrada para ${usuario.nome}`, 'success');
-                limparFormulario('form-entrada');
-            } catch (error) {
-                console.error('Erro ao registrar entrada:', error);
-                mostrarFeedback('entrada-feedback', 'Erro ao registrar entrada', 'error');
-            }
+            const movimentacao = {
+                id: Date.now().toString(),
+                usuarioId: usuario.id,
+                usuarioNome: usuario.nome,
+                usuarioCPF: usuario.cpf,
+                tipo: 'entrada',
+                dataHora: new Date().toISOString(),
+                cuidador
+            };
+
+            movimentacoes.push(movimentacao);
+            salvarDados();
+            atualizarListaMovimentacoes();
+            
+            // Tenta enviar para Google Sheets (não bloqueia se falhar)
+            registrarMovimentacaoGoogle(movimentacao);
+            
+            mostrarFeedback('entrada-feedback', `Entrada registrada para ${usuario.nome}`, 'success');
+            limparFormulario('form-entrada');
         }
 
-        async function handleSaida(e) {
+        function handleSaida(e) {
             e.preventDefault();
 
             const usuarioId = document.getElementById('saida-usuario').value;
@@ -1833,18 +1495,25 @@
                 return;
             }
 
-            try {
-                const movimentacao = await registrarSaida(usuario.id, usuario.nome, usuario.cpf, cuidador);
-                movimentacoes.push(movimentacao);
-                salvarDadosLocais();
-                atualizarListaMovimentacoes();
-                
-                mostrarFeedback('saida-feedback', `Saída registrada para ${usuario.nome}`, 'success');
-                limparFormulario('form-saida');
-            } catch (error) {
-                console.error('Erro ao registrar saída:', error);
-                mostrarFeedback('saida-feedback', 'Erro ao registrar saída', 'error');
-            }
+            const movimentacao = {
+                id: Date.now().toString(),
+                usuarioId: usuario.id,
+                usuarioNome: usuario.nome,
+                usuarioCPF: usuario.cpf,
+                tipo: 'saida',
+                dataHora: new Date().toISOString(),
+                cuidador
+            };
+
+            movimentacoes.push(movimentacao);
+            salvarDados();
+            atualizarListaMovimentacoes();
+            
+            // Tenta enviar para Google Sheets (não bloqueia se falhar)
+            registrarMovimentacaoGoogle(movimentacao);
+            
+            mostrarFeedback('saida-feedback', `Saída registrada para ${usuario.nome}`, 'success');
+            limparFormulario('form-saida');
         }
 
         function atualizarListaMovimentacoes() {
@@ -1874,7 +1543,11 @@
             }).join('');
         }
 
-        async function handleBusca() {
+        // ============================================
+        // BUSCA
+        // ============================================
+
+        function handleBusca() {
             const termo = document.getElementById('busca-input').value.trim();
             const resultado = document.getElementById('resultado-busca');
 
@@ -1883,231 +1556,165 @@
                 return;
             }
 
-            try {
-                const usuariosEncontrados = await buscarUsuario(termo);
+            const termoLower = termo.toLowerCase();
+            const usuariosEncontrados = usuariosCadastrados.filter(u => 
+                u.nome.toLowerCase().includes(termoLower) || 
+                u.cpf.includes(termo.replace(/[^\d]/g, ''))
+            );
 
-                if (usuariosEncontrados.length === 0) {
-                    resultado.innerHTML = '<p class="empty-state">Nenhum usuário encontrado</p>';
-                    return;
-                }
-
-                resultado.innerHTML = usuariosEncontrados.map(usuario => {
-                    const movsUsuario = movimentacoes.filter(m => m.usuarioId === usuario.id);
-                    const ultimaMov = movsUsuario[movsUsuario.length - 1];
-
-                    return `
-                        <div class="busca-resultado">
-                            <strong>${usuario.nome}</strong>
-                            <p><strong>CPF:</strong> ${formatarCPF(usuario.cpf)}</p>
-                            <p><strong>Responsável Cadastro:</strong> ${usuario.responsavel}</p>
-                            ${usuario.observacoes ? `<p><strong>Observações:</strong> ${usuario.observacoes}</p>` : ''}
-                            <p><strong>Data de Cadastro:</strong> ${formatarData(new Date(usuario.dataCadastro))}</p>
-                            <hr class="divider">
-                            <p><strong>Histórico de Movimentações (${movsUsuario.length}):</strong></p>
-                            ${movsUsuario.length > 0 ? `
-                                <ul style="margin-left: 1rem; margin-top: 0.5rem;">
-                                    ${movsUsuario.reverse().map(mov => `
-                                        <li>${mov.tipo === 'entrada' ? '↓ ENTRADA' : '↑ SAÍDA'} - ${formatarDataHora(new Date(mov.dataHora))} (${mov.cuidador})</li>
-                                    `).join('')}
-                                </ul>
-                            ` : '<p style="color: #7f8c8d;">Sem movimentações registradas</p>'}
-                        </div>
-                    `;
-                }).join('');
-            } catch (error) {
-                console.error('Erro ao buscar usuário:', error);
-                resultado.innerHTML = '<p class="empty-state">Erro ao buscar usuário</p>';
-            }
-        }
-
-        async function salvarConfiguracao() {
-            const spreadsheetId = document.getElementById('spreadsheet-id').value.trim();
-            const apiKey = document.getElementById('api-key').value.trim();
-
-            if (!spreadsheetId || !apiKey) {
-                mostrarFeedback('config-feedback', 'Preencha todos os campos', 'error');
+            if (usuariosEncontrados.length === 0) {
+                resultado.innerHTML = '<p class="empty-state">Nenhum usuário encontrado</p>';
                 return;
             }
 
-            try {
-                saveConfig(spreadsheetId, apiKey);
-                inicializarAPI();
+            resultado.innerHTML = usuariosEncontrados.map(usuario => {
+                const movsUsuario = movimentacoes.filter(m => m.usuarioId === usuario.id);
 
-                const conectado = await sheetsAPI.testarConexao();
-                
-                if (conectado) {
-                    mostrarFeedback('config-feedback', 'Configuração salva e conexão testada com sucesso!', 'success');
-                    atualizarStatusConexao(true);
-                    await carregarDados();
-                } else {
-                    mostrarFeedback('config-feedback', 'Configuração salva, mas conexão falhou', 'warning');
-                    atualizarStatusConexao(false);
-                }
-            } catch (error) {
-                console.error('Erro ao salvar configuração:', error);
-                mostrarFeedback('config-feedback', 'Erro ao salvar configuração', 'error');
-                atualizarStatusConexao(false);
-            }
+                return `
+                    <div class="busca-resultado">
+                        <strong>${usuario.nome}</strong>
+                        <p><strong>CPF:</strong> ${formatarCPF(usuario.cpf)}</p>
+                        <p><strong>Responsável Cadastro:</strong> ${usuario.responsavel}</p>
+                        ${usuario.observacoes ? `<p><strong>Observações:</strong> ${usuario.observacoes}</p>` : ''}
+                        <p><strong>Data de Cadastro:</strong> ${formatarData(new Date(usuario.dataCadastro))}</p>
+                        <hr class="divider">
+                        <p><strong>Histórico de Movimentações (${movsUsuario.length}):</strong></p>
+                        ${movsUsuario.length > 0 ? `
+                            <ul style="margin-left: 1rem; margin-top: 0.5rem;">
+                                ${movsUsuario.reverse().map(mov => `
+                                    <li>${mov.tipo === 'entrada' ? '↓ ENTRADA' : '↑ SAÍDA'} - ${formatarDataHora(new Date(mov.dataHora))} (${mov.cuidador})</li>
+                                `).join('')}
+                            </ul>
+                        ` : '<p style="color: #7f8c8d;">Sem movimentações registradas</p>'}
+                    </div>
+                `;
+            }).join('');
         }
-
-        function atualizarStatusConexao(conectado) {
-            const statusElement = document.getElementById('status-conexao');
-            if (statusElement) {
-                if (conectado) {
-                    statusElement.textContent = 'Conectado';
-                    statusElement.className = 'status-conectado';
-                } else {
-                    statusElement.textContent = 'Desconectado';
-                    statusElement.className = 'status-desconectado';
-                }
-            }
-        }
-
-        function abrirModalImpressao(conteudo) {
-            const modal = document.getElementById('print-modal');
-            const printContent = document.getElementById('print-content');
-            
-            printContent.innerHTML = conteudo;
-            modal.classList.add('show');
-        }
-
-        function closePrintModal() {
-            const modal = document.getElementById('print-modal');
-            modal.classList.remove('show');
-        }
-
-        document.getElementById('print-modal')?.addEventListener('click', (e) => {
-            if (e.target.id === 'print-modal') {
-                closePrintModal();
-            }
-        });
 
         // ============================================
         // RELATÓRIOS
         // ============================================
 
-        async function gerarRelatorio() {
+        function gerarRelatorio() {
             const tipoRelatorio = document.getElementById('tipo-relatorio').value;
             const dataInicio = new Date(document.getElementById('data-inicio-relatorio').value);
             const dataFim = new Date(document.getElementById('data-fim-relatorio').value);
 
             if (dataInicio > dataFim) {
-                mostrarFeedback('relatorio-content', 'Data inicial não pode ser maior que data final', 'error');
+                document.getElementById('relatorio-content').innerHTML = '<p class="empty-state">Data inicial não pode ser maior que data final</p>';
                 return;
             }
 
-            try {
-                const movimentacoesPeriodo = await obterMovimentacoesPorPeriodo(dataInicio, dataFim);
-                
-                const entradas = movimentacoesPeriodo.filter(m => m.tipo === 'entrada').length;
-                const saidas = movimentacoesPeriodo.filter(m => m.tipo === 'saida').length;
-                
-                const usuariosUnicos = {};
-                movimentacoesPeriodo.forEach(mov => {
-                    if (!usuariosUnicos[mov.usuarioId]) {
-                        usuariosUnicos[mov.usuarioId] = {
-                            id: mov.usuarioId,
-                            nome: mov.usuarioNome,
-                            cpf: mov.usuarioCPF,
-                            movimentacoes: []
-                        };
-                    }
-                    usuariosUnicos[mov.usuarioId].movimentacoes.push(mov);
-                });
+            const movimentacoesPeriodo = movimentacoes.filter(m => {
+                const dataMov = new Date(m.dataHora);
+                return dataMov >= dataInicio && dataMov <= dataFim;
+            });
 
-                const usuarios = Object.values(usuariosUnicos);
+            const entradas = movimentacoesPeriodo.filter(m => m.tipo === 'entrada').length;
+            const saidas = movimentacoesPeriodo.filter(m => m.tipo === 'saida').length;
+            
+            const usuariosUnicos = {};
+            movimentacoesPeriodo.forEach(mov => {
+                if (!usuariosUnicos[mov.usuarioId]) {
+                    usuariosUnicos[mov.usuarioId] = {
+                        id: mov.usuarioId,
+                        nome: mov.usuarioNome,
+                        cpf: mov.usuarioCPF,
+                        movimentacoes: []
+                    };
+                }
+                usuariosUnicos[mov.usuarioId].movimentacoes.push(mov);
+            });
 
-                let html = `
-                    <div class="relatorio-header">
-                        <h3>Relatório ${tipoRelatorio === 'semanal' ? 'Semanal' : 'Mensal'}</h3>
-                        <p>Período: ${formatarData(dataInicio)} a ${formatarData(dataFim)}</p>
+            const usuarios = Object.values(usuariosUnicos);
+
+            let html = `
+                <div class="relatorio-header">
+                    <h3>Relatório ${tipoRelatorio === 'semanal' ? 'Semanal' : 'Mensal'}</h3>
+                    <p>Período: ${formatarData(dataInicio)} a ${formatarData(dataFim)}</p>
+                </div>
+
+                <div class="relatorio-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">${entradas}</div>
+                        <div class="stat-label">Entradas</div>
                     </div>
-
-                    <div class="relatorio-stats">
-                        <div class="stat-card">
-                            <div class="stat-number">${entradas}</div>
-                            <div class="stat-label">Entradas</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">${saidas}</div>
-                            <div class="stat-label">Saídas</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">${usuarios.length}</div>
-                            <div class="stat-label">Usuários Únicos</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-number">${movimentacoesPeriodo.length}</div>
-                            <div class="stat-label">Total de Movimentações</div>
-                        </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${saidas}</div>
+                        <div class="stat-label">Saídas</div>
                     </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${usuarios.length}</div>
+                        <div class="stat-label">Usuários Únicos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${movimentacoesPeriodo.length}</div>
+                        <div class="stat-label">Total de Movimentações</div>
+                    </div>
+                </div>
 
-                    <h4>Detalhamento por Usuário</h4>
-                    <table class="relatorio-table">
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>CPF</th>
-                                <th>Data/Hora</th>
-                                <th>Tipo</th>
-                                <th>Cuidador</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                `;
-
-                movimentacoesPeriodo.forEach(mov => {
-                    const tipo = mov.tipo === 'entrada' ? '↓ ENTRADA' : '↑ SAÍDA';
-                    const classe = mov.tipo === 'entrada' ? 'status-entrada' : 'status-saida';
-                    html += `
+                <h4>Detalhamento por Usuário</h4>
+                <table class="relatorio-table">
+                    <thead>
                         <tr>
-                            <td>${mov.usuarioNome}</td>
-                            <td>${formatarCPF(mov.usuarioCPF)}</td>
-                            <td>${formatarDataHora(new Date(mov.dataHora))}</td>
-                            <td><span class="${classe}">${tipo}</span></td>
-                            <td>${mov.cuidador}</td>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Data/Hora</th>
+                            <th>Tipo</th>
+                            <th>Cuidador</th>
                         </tr>
-                    `;
-                });
+                    </thead>
+                    <tbody>
+            `;
 
+            movimentacoesPeriodo.forEach(mov => {
+                const tipo = mov.tipo === 'entrada' ? '↓ ENTRADA' : '↑ SAÍDA';
+                const classe = mov.tipo === 'entrada' ? 'status-entrada' : 'status-saida';
                 html += `
-                        </tbody>
-                    </table>
-
-                    <hr class="divider">
-
-                    <h4>Lista de Usuários</h4>
-                    <table class="relatorio-table">
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>CPF</th>
-                                <th>Movimentações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                    <tr>
+                        <td>${mov.usuarioNome}</td>
+                        <td>${formatarCPF(mov.usuarioCPF)}</td>
+                        <td>${formatarDataHora(new Date(mov.dataHora))}</td>
+                        <td><span class="${classe}">${tipo}</span></td>
+                        <td>${mov.cuidador}</td>
+                    </tr>
                 `;
+            });
 
-                usuarios.forEach(usuario => {
-                    html += `
+            html += `
+                    </tbody>
+                </table>
+
+                <hr class="divider">
+
+                <h4>Lista de Usuários</h4>
+                <table class="relatorio-table">
+                    <thead>
                         <tr>
-                            <td>${usuario.nome}</td>
-                            <td>${formatarCPF(usuario.cpf)}</td>
-                            <td>${usuario.movimentacoes.length}</td>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Movimentações</th>
                         </tr>
-                    `;
-                });
+                    </thead>
+                    <tbody>
+            `;
 
+            usuarios.forEach(usuario => {
                 html += `
-                        </tbody>
-                    </table>
+                    <tr>
+                        <td>${usuario.nome}</td>
+                        <td>${formatarCPF(usuario.cpf)}</td>
+                        <td>${usuario.movimentacoes.length}</td>
+                    </tr>
                 `;
+            });
 
-                document.getElementById('relatorio-content').innerHTML = html;
-            } catch (error) {
-                console.error('Erro ao gerar relatório:', error);
-                document.getElementById('relatorio-content').innerHTML = '<p class="empty-state">Erro ao gerar relatório</p>';
-            }
+            html += `
+                    </tbody>
+                </table>
+            `;
+
+            document.getElementById('relatorio-content').innerHTML = html;
         }
 
         function imprimirRelatorio() {
@@ -2116,87 +1723,98 @@
                 alert('Gere um relatório primeiro');
                 return;
             }
-            abrirModalImpressao(conteudo);
+            document.getElementById('print-content').innerHTML = conteudo;
+            document.getElementById('print-modal').classList.add('show');
             setTimeout(() => window.print(), 100);
         }
 
-        async function gerarPDFRelatorio() {
+        function gerarPDFRelatorio() {
             const conteudo = document.getElementById('relatorio-content').innerHTML;
             if (conteudo.includes('empty-state') || conteudo === '') {
                 alert('Gere um relatório primeiro');
                 return;
             }
 
-            try {
-                if (typeof html2pdf !== 'undefined') {
-                    const element = document.getElementById('relatorio-content');
-                    const opt = {
-                        margin: 10,
-                        filename: `relatorio-${new Date().toISOString().split('T')[0]}.pdf`,
-                        image: { type: 'jpeg', quality: 0.98 },
-                        html2canvas: { scale: 2 },
-                        jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
-                    };
-                    html2pdf().set(opt).from(element).save();
-                } else {
-                    abrirModalImpressao(conteudo);
-                    setTimeout(() => window.print(), 100);
-                }
-            } catch (error) {
-                console.error('Erro ao gerar PDF:', error);
-                alert('Erro ao gerar PDF');
+            if (typeof html2pdf !== 'undefined') {
+                const element = document.getElementById('relatorio-content');
+                const opt = {
+                    margin: 10,
+                    filename: `relatorio-${new Date().toISOString().split('T')[0]}.pdf`,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+                };
+                html2pdf().set(opt).from(element).save();
+            } else {
+                alert('Biblioteca de PDF não disponível');
             }
         }
 
-        async function gerarRelatorioDiario() {
+        function gerarRelatorioDiario() {
             const data = new Date(document.getElementById('data-relatorio-diario').value);
+            const dataStr = formatarData(data);
 
-            try {
-                const usuariosPresentes = await obterUsuariosPresentes(data);
+            const movsDodia = movimentacoes.filter(m => {
+                const dataMov = formatarData(new Date(m.dataHora));
+                return dataMov === dataStr;
+            });
 
-                if (usuariosPresentes.length === 0) {
-                    document.getElementById('relatorio-diario-content').innerHTML = 
-                        '<p class="empty-state">Nenhum usuário presente nesta data</p>';
-                    return;
+            const usuariosPresentes = [];
+            const usuariosProcessados = new Set();
+
+            movsDodia.forEach(mov => {
+                if (!usuariosProcessados.has(mov.usuarioId)) {
+                    const movsUsuario = movsDodia.filter(m => m.usuarioId === mov.usuarioId);
+                    const ultimaMov = movsUsuario[movsUsuario.length - 1];
+                    
+                    if (ultimaMov.tipo === 'entrada') {
+                        usuariosPresentes.push({
+                            nome: mov.usuarioNome,
+                            cpf: mov.usuarioCPF
+                        });
+                    }
+                    usuariosProcessados.add(mov.usuarioId);
                 }
+            });
 
-                let html = `
-                    <div class="relatorio-header">
-                        <h3>Relatório Diário de Presença</h3>
-                        <p>Data: ${formatarData(data)}</p>
-                        <p>Total de Presentes: ${usuariosPresentes.length}</p>
-                    </div>
-
-                    <div class="presenca-list">
-                `;
-
-                usuariosPresentes.forEach((usuario, index) => {
-                    html += `
-                        <div class="presenca-item">
-                            <div class="presenca-info">
-                                <strong>${index + 1}. ${usuario.nome}</strong>
-                                <p>CPF: ${formatarCPF(usuario.cpf)}</p>
-                            </div>
-                            <div class="presenca-assinatura">Assinatura</div>
-                        </div>
-                    `;
-                });
-
-                html += `
-                    </div>
-
-                    <div style="margin-top: 2rem; text-align: center; font-size: 0.9rem; color: #7f8c8d;">
-                        <p>Responsável pela Verificação: _________________________</p>
-                        <p>Data: ${formatarData(data)}</p>
-                    </div>
-                `;
-
-                document.getElementById('relatorio-diario-content').innerHTML = html;
-            } catch (error) {
-                console.error('Erro ao gerar relatório diário:', error);
+            if (usuariosPresentes.length === 0) {
                 document.getElementById('relatorio-diario-content').innerHTML = 
-                    '<p class="empty-state">Erro ao gerar relatório</p>';
+                    '<p class="empty-state">Nenhum usuário presente nesta data</p>';
+                return;
             }
+
+            let html = `
+                <div class="relatorio-header">
+                    <h3>Relatório Diário de Presença</h3>
+                    <p>Data: ${dataStr}</p>
+                    <p>Total de Presentes: ${usuariosPresentes.length}</p>
+                </div>
+
+                <div class="presenca-list">
+            `;
+
+            usuariosPresentes.forEach((usuario, index) => {
+                html += `
+                    <div class="presenca-item">
+                        <div class="presenca-info">
+                            <strong>${index + 1}. ${usuario.nome}</strong>
+                            <p>CPF: ${formatarCPF(usuario.cpf)}</p>
+                        </div>
+                        <div class="presenca-assinatura">Assinatura</div>
+                    </div>
+                `;
+            });
+
+            html += `
+                </div>
+
+                <div style="margin-top: 2rem; text-align: center; font-size: 0.9rem; color: #7f8c8d;">
+                    <p>Responsável pela Verificação: _________________________</p>
+                    <p>Data: ${dataStr}</p>
+                </div>
+            `;
+
+            document.getElementById('relatorio-diario-content').innerHTML = html;
         }
 
         function imprimirRelatorioDiario() {
@@ -2205,36 +1823,108 @@
                 alert('Gere um relatório primeiro');
                 return;
             }
-            abrirModalImpressao(conteudo);
+            document.getElementById('print-content').innerHTML = conteudo;
+            document.getElementById('print-modal').classList.add('show');
             setTimeout(() => window.print(), 100);
         }
 
-        async function gerarPDFRelatorioDiario() {
+        function gerarPDFRelatorioDiario() {
             const conteudo = document.getElementById('relatorio-diario-content').innerHTML;
             if (conteudo.includes('empty-state') || conteudo === '') {
                 alert('Gere um relatório primeiro');
                 return;
             }
 
-            try {
-                if (typeof html2pdf !== 'undefined') {
-                    const element = document.getElementById('relatorio-diario-content');
-                    const opt = {
-                        margin: 10,
-                        filename: `presenca-${new Date().toISOString().split('T')[0]}.pdf`,
-                        image: { type: 'jpeg', quality: 0.98 },
-                        html2canvas: { scale: 2 },
-                        jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
-                    };
-                    html2pdf().set(opt).from(element).save();
-                } else {
-                    abrirModalImpressao(conteudo);
-                    setTimeout(() => window.print(), 100);
-                }
-            } catch (error) {
-                console.error('Erro ao gerar PDF:', error);
-                alert('Erro ao gerar PDF');
+            if (typeof html2pdf !== 'undefined') {
+                const element = document.getElementById('relatorio-diario-content');
+                const opt = {
+                    margin: 10,
+                    filename: `presenca-${new Date().toISOString().split('T')[0]}.pdf`,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+                };
+                html2pdf().set(opt).from(element).save();
+            } else {
+                alert('Biblioteca de PDF não disponível');
             }
+        }
+
+        // ============================================
+        // CONFIGURAÇÕES
+        // ============================================
+
+        function salvarConfiguracao() {
+            const novoSpreadsheetId = document.getElementById('spreadsheet-id').value.trim();
+            const novaApiKey = document.getElementById('api-key').value.trim();
+
+            if (!novoSpreadsheetId || !novaApiKey) {
+                mostrarFeedback('config-feedback', 'Preencha o ID da Planilha e a Chave de API', 'warning');
+                return;
+            }
+
+            spreadsheetId = novoSpreadsheetId;
+            apiKey = novaApiKey;
+
+            localStorage.setItem('spreadsheetId', spreadsheetId);
+            localStorage.setItem('apiKey', apiKey);
+
+            mostrarFeedback('config-feedback', 'Configurações salvas! Teste a conexão para verificar.', 'success');
+        }
+
+        // ============================================
+        // BACKUP E EXPORTAÇÃO
+        // ============================================
+
+        function exportarJSON() {
+            const dados = {
+                usuariosCadastrados,
+                movimentacoes,
+                dataExportacao: new Date().toISOString()
+            };
+
+            const json = JSON.stringify(dados, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `backup-casa-passagem-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            mostrarFeedback('config-feedback', 'Dados exportados com sucesso!', 'success');
+        }
+
+        function importarJSON(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                try {
+                    const dados = JSON.parse(event.target.result);
+                    
+                    if (dados.usuariosCadastrados && dados.movimentacoes) {
+                        usuariosCadastrados = dados.usuariosCadastrados;
+                        movimentacoes = dados.movimentacoes;
+                        salvarDados();
+                        atualizarSelectsUsuarios();
+                        atualizarListaCadastros();
+                        atualizarListaMovimentacoes();
+                        
+                        mostrarFeedback('config-feedback', 'Dados importados com sucesso!', 'success');
+                    } else {
+                        mostrarFeedback('config-feedback', 'Arquivo inválido', 'error');
+                    }
+                } catch (error) {
+                    mostrarFeedback('config-feedback', 'Erro ao importar arquivo', 'error');
+                }
+            };
+            reader.readAsText(file);
+            
+            e.target.value = '';
         }
     </script>
 </body>
